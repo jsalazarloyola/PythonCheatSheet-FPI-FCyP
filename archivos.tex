@@ -2,34 +2,6 @@
 % ARCHIVOS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{contentbox}{label=Ciclos con \texttt{for}}
-    Repite la acción por cada elemento de la secuencia:
-\begin{lstlisting}
-for elemento in secuencia:
-    acciones_a_repetir
-\end{lstlisting}
-    
-    La variable \lstinline!elemento! es definida en está secuencia y su valor es cada elemento de la secuencia en orden.
-    
-    Entre las secuencias, se incluyen (entre muchos otros) archivos, \lstinline!list!, \lstinline!str!, \lstinline!range!, etc.
-\end{contentbox}
-
-\begin{contentbox}{label=Función \lstinline!range!}
-    Generación de secuencias numéricas:
-    \begin{itemize}
-        \item \lstinline!range(stop)! genera números de 0 a \texttt{stop-1}.
-        \item \lstinline!range(start, stop, d)! genera números desde \texttt{start} hasta \texttt{stop-1}, con distancia de \texttt{d} entre ellos.
-    \end{itemize}
-    
-%     Por ejemplo, para mostrar todos los números desde 0 a $n-1$:
-% \begin{lstlisting}
-% for i in range(n):
-%     print(i)
-% \end{lstlisting}
-
-    Nótese que \lstinline!range! no es una lista, pero puede convertirse a una mediante \lstinline!list(range(n))!.
-\end{contentbox}
-
 \begin{contentbox}{label=Archivos}
     Un archivo es un objeto especial en Python creado con la función nativa \lstinline!open!:
     

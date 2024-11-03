@@ -1,3 +1,4 @@
+% !TEX root=main.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % FUNDAMENTOS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -109,100 +110,6 @@ else:
     Si existieran 2 bloques de decisión consecutivos se ejecutarán las sentencias condicionadas a la primera condición válida para cada bloque de manera independiente.
 \end{contentbox}
 
-\begin{contentbox}{label=Ciclos con \texttt{while}}
-    Realizar una repetición condicionada de sentencias: 
-\begin{lstlisting}
-while <condición>:
-    <sentencias_a_repetir>
-\end{lstlisting}
-
-    Donde \lstinline!condición! es una \alert{expresión booleana} y \lstinline!<sentencias_a_repetir>! (última instrucción indentada con respecto a \lstinline!while!) es la secuencia de instrucciones a repetir.
-    
-    A través de este bloque, se asegura la ejecución de las \lstinline!<sentencias_a_repetir>! mientras se cumpla la \lstinline!condición! señalada.
-    
-    Se puede repetir cualquier sentencia, incluyendo otros ciclos.
-\end{contentbox}
-
-\begin{contentbox}{label=Banderas (\textit{Flags})}
-    Parte de la \lstinline!<condición>! puede ser una variable booleana: esta indica si se debe continuar o no, según qué ocurra en el ciclo:
-    
-\begin{lstlisting}
-i = 1
-keep_going = True
-while keep_going and i <= 5:
-    if i % 2 == 0:
-        keep_going = False
-    i += 1
-\end{lstlisting}
-
-    Haciendo uso de decisiones (\lstinline!if!) y de una bandera (\lstinline!keep_going!), se puede verificar si se cumple una condición adicional bajo la cual detener el ciclo antes de que el iterador \lstinline!i! llegue a su límite.
-\end{contentbox}
-
-\begin{contentbox}{label=Listas}
-    \begin{tabular}{C|p{0.5\linewidth}}
-        \lstinline!lista = [1, 2, 3]! & Define un objeto de tipo lista. \\
-        \lstinline!lista[i]! & Retorna el elemento en la posición \lstinline!i!. Soporta de \lstinline!0! a \lstinline!n-1!\footnote{Con \lstinline!n! equivalente al largo de la lista.} de izquierda a derecha y de \lstinline!-1! a \lstinline!-n! de derecha a izquierda. \\
-        \lstinline!lista.append(4)! & Añade el elemento \lstinline!4! al final de la lista. \\
-        \lstinline!lista[j] = z! & Redefine el valor del elemento en la posición \lstinline!j! de la lista a \lstinline!z!. \\
-        \lstinline!lista.pop(k)! & Retorna el elemento en la posición \lstinline!k! y lo elimina de \lstinline!lista!. Sin parámetros retorna y elimina el último elemento. \\
-        \lstinline!lista.count(c)! & Retorna la cantidad de apariciones del elemento \lstinline!c!. \\
-        \lstinline!lista.index(d)! & Retorna la posición del elemento \lstinline!d!. \\
-        \lstinline!lista.remove(e)! & Elimina la primera aparición del elemento \lstinline!e!. \\
-        \lstinline!lista.insert(i, f)! & Inserta el elemento \lstinline!f! en la posición \lstinline!i!\footnote{Los elementos siguientes son desplazados en 1 posición a la derecha.}. \\
-        \lstinline!lista.sort()! & Ordena \lstinline!lista! en orden creciente. \\
-        \lstinline!lista1 + lista2! & Retorna una lista que concatena \lstinline!lista1! y \lstinline!lista2!. \\
-        \lstinline!lista * n! & Retorna una lista que concatena \lstinline!lista! \lstinline!n! veces\footnote{\lstinline!n! debe ser entero.}. \\
-    \end{tabular}
-\end{contentbox}
-
-% \begin{contentbox}{label=Largo de una Lista}
-%     El largo de la lista \lstinline!lista! se obtiene mediante la función nativa \lstinline!len(lista)!. Se entiende por ``largo'' el total de elementos que hay en esta.
-    
-%     Si una lista tiene como elemento otra lista, este elemento sigue contando como uno solo.
-% \end{contentbox}
-
-\begin{contentbox}{label=Largo de una Secuencia}
-    El largo de la secuencia \lstinline!seq! se obtiene mediante la función nativa \lstinline!len(seq)!. Se entiende por ``largo'' de una secuencia como el total de elementos que hay en esta.
-    
-    En el caso de una lista, si tiene como elemento otra lista, este elemento sigue contando como uno solo.
-\end{contentbox}
-
-\begin{contentbox}{label=Cortes y Copias}
-    Pueden accederse \alert{cortes} de una secuencia como una lista o string mediante la \alert{notación slice}. Su notación básica es
-    \begin{center}
-        \lstinline!objeto[a:b:c]!,
-    \end{center}
-    retornando un objeto del mismo tipo del seccionado, con \lstinline!a! el índice inicial del corte, \lstinline!b! el índice final (él último índice retornado será siempre el mayor valor posible menor a \lstinline!b!) y \lstinline!c! la distancia entre dos elementos consecutivos recuperados. \lstinline!a! y \lstinline!b! deben ser índices válidos y \lstinline!c! debe ser un número entero (positivo o negativo).
-    
-    Esta notación tiene las siguientes variaciones:
-    \begin{itemize}
-        \item Si se omite \lstinline!a! (pero no \lstinline!:!), inicia desde el comienzo.
-        \item Si se omite \lstinline!b! (pero no \lstinline!:!), llega hasta el final.
-        \item Si se omite \lstinline!c! (incluyendo o no \lstinline!:!), se asume 1.
-    \end{itemize}
-\end{contentbox}
-
-\begin{contentbox}{label=Consultas sobre Strings}
-    Todos estos métodos devuelven \texttt{True} o \texttt{False}.
-    
-    \begin{tabular}{C|p{0.5\linewidth}}
-        \lstinline!s.isupper()! & Todas las letras son mayúsculas y hay al menos una. \\
-        \lstinline!s.islower()! & Todas las letras son minúsculas y hay al menos una. \\
-        \lstinline!s.isalpha()! & Todos los caracteres son alfabéticos. \\
-        \lstinline!s.isdigit()! & Todos los caracteres son dígitos. \\
-        \lstinline!s.isalnum()! & Todos los caracteres son alfabéticos o dígitos. \\
-        \lstinline!s.endswith(t)! & El string termina con \texttt{t}. \\
-        \lstinline!s.startswith(t)! & El string empieza con \texttt{t}.
-    \end{tabular}
-\end{contentbox}
-
-\begin{contentbox}{label=String a Lista y Viceversa}
-    \begin{itemize}
-        \item \lstinline!s.split(sep)! separa el string utilizando \texttt{sep} como separador y retorna una lista cuyos elementos son los fragmentos del string.
-        \item \lstinline!sep.join(lista)! une los elementos de \texttt{lista}, separados por \texttt{sep}, en un único string. Solo funciona si los elementos son strings.
-    \end{itemize}
-\end{contentbox}
-
 \begin{contentbox}{label=Strings}
     \begin{tabular}{C|p{0.5\linewidth}}
         \lstinline!s = "Monty"! & \multirow{2}{=}{Define un objeto de tipo string.} \\
@@ -221,4 +128,115 @@ while keep_going and i <= 5:
         \lstinline!s.title()! & Retorna el string en ``Formato De Título''. \\
         \lstinline!s.count(sub)! & Retorna la cantidad de apariciones no superpuestas de \texttt{sub}.
     \end{tabular}
+\end{contentbox}
+
+\begin{contentbox}{label=Consultas sobre Strings}
+    Todos estos métodos devuelven \texttt{True} o \texttt{False}.
+    
+    \begin{tabular}{C|p{0.5\linewidth}}
+        \lstinline!s.isupper()! & Todas las letras son mayúsculas y hay al menos una. \\
+        \lstinline!s.islower()! & Todas las letras son minúsculas y hay al menos una. \\
+        \lstinline!s.isalpha()! & Todos los caracteres son alfabéticos. \\
+        \lstinline!s.isdigit()! & Todos los caracteres son dígitos. \\
+        \lstinline!s.isalnum()! & Todos los caracteres son alfabéticos o dígitos. \\
+        \lstinline!s.endswith(t)! & El string termina con \texttt{t}. \\
+        \lstinline!s.startswith(t)! & El string empieza con \texttt{t}.
+    \end{tabular}
+\end{contentbox}
+
+\begin{contentbox}{label=Ciclos con \texttt{while}}
+    Realizar una repetición condicionada de sentencias: 
+\begin{lstlisting}
+while <condición>:
+    <sentencias_a_repetir>
+\end{lstlisting}
+
+    Donde \lstinline!<condición>! es una \alert{expresión booleana} y \lstinline!<sentencias_a_repetir>! (última instrucción indentada con respecto a \lstinline!while!) es la secuencia de instrucciones a repetir.
+    
+    A través de este bloque, se asegura la ejecución de las \lstinline!<sentencias_a_repetir>! mientras se cumpla la \lstinline!condición! señalada.
+    
+    Se puede repetir cualquier sentencia, incluyendo otros ciclos.
+\end{contentbox}
+
+\begin{contentbox}{label=Función \lstinline!range!}
+    Generación de secuencias numéricas:
+    \begin{itemize}
+        \item \lstinline!range(stop)! genera números de 0 a \texttt{stop-1}.
+        \item \lstinline!range(start, stop, d)! genera números desde \texttt{start} hasta \texttt{stop-1}, con distancia de \texttt{d} entre ellos.
+    \end{itemize}
+    
+    Nótese que \lstinline!range! no es una lista, pero puede convertirse a una mediante \lstinline!list(range(n))!.
+\end{contentbox}
+
+\begin{contentbox}{label=Ciclos con \texttt{for}}
+    Repite la acción por cada elemento de la secuencia:
+\begin{lstlisting}
+for elemento in secuencia:
+    acciones_a_repetir
+\end{lstlisting}
+    
+    La variable \lstinline!elemento! es definida en el \lstinline!for! y su valor es cada elemento de la secuencia en orden.
+    
+    Entre las secuencias, se incluyen archivos, \lstinline!list!, \lstinline!str!, \lstinline!range!, etc.
+\end{contentbox}
+
+\begin{contentbox}{label=Banderas (\textit{Flags})}
+    Parte de la \lstinline!<condición>! puede ser una variable booleana: esta indica si se debe continuar o no, según qué ocurra en el ciclo:
+    
+\begin{lstlisting}
+i = 1
+keep_going = True
+while keep_going and i <= 5:
+    if i % 2 == 0:
+        keep_going = False
+    i += 1
+\end{lstlisting}
+
+    Haciendo uso de decisiones (\lstinline!if!) y de una bandera (\lstinline!keep_going!), se puede verificar si se cumple una condición adicional bajo la cual detener el ciclo antes de que el iterador \lstinline!i! llegue a su límite.
+\end{contentbox}
+
+\begin{contentbox}{label=\textit{Slices} y Copias}
+    Pueden accederse \alert{cortes} (\textit{slices}) de una secuencia como una lista o string mediante la \alert{notación slice}. Su notación básica es
+    \begin{center}
+        \lstinline!objeto[a:b:c]!,
+    \end{center}
+    retornando un objeto del mismo tipo del seccionado, con \lstinline!a! el índice inicial del corte, \lstinline!b! el índice final (él último índice retornado será siempre el mayor valor posible menor a \lstinline!b!) y \lstinline!c! la distancia entre dos elementos consecutivos recuperados. \lstinline!a! y \lstinline!b! deben ser índices válidos y \lstinline!c! debe ser un número entero (positivo o negativo).
+    
+    Esta notación tiene las siguientes variaciones:
+    \begin{itemize}
+        \item Si se omite \lstinline!a! (pero no \lstinline!:!), inicia desde el comienzo.
+        \item Si se omite \lstinline!b! (pero no \lstinline!:!), llega hasta el final.
+        \item Si se omite \lstinline!c! (incluyendo o no \lstinline!:!), se asume 1.
+    \end{itemize}
+\end{contentbox}
+
+
+\begin{contentbox}{label=Listas}
+    \begin{tabular}{C|p{0.5\linewidth}}
+        \lstinline!lista = [1, 2, 3]! & Define un objeto de tipo lista. \\
+        \lstinline!lista[i]! & Retorna el elemento en la posición \lstinline!i!. Soporta de \lstinline!0! a \lstinline!n-1!\footnote{Con \lstinline!n! equivalente al largo de la lista.} de izquierda a derecha y de \lstinline!-1! a \lstinline!-n! de derecha a izquierda. \\
+        \lstinline!lista.append(4)! & Añade el elemento \lstinline!4! al final de la lista. \\
+        \lstinline!lista[j] = z! & Redefine el valor del elemento en la posición \lstinline!j! de la lista a \lstinline!z!. \\
+        \lstinline!lista.pop(k)! & Retorna el elemento en la posición \lstinline!k! y lo elimina de \lstinline!lista!. Sin parámetros retorna y elimina el último elemento. \\
+        \lstinline!lista.count(c)! & Retorna la cantidad de apariciones del elemento \lstinline!c!. \\
+        \lstinline!lista.index(d)! & Retorna la posición del elemento \lstinline!d!. \\
+        \lstinline!lista.remove(e)! & Elimina la primera aparición del elemento \lstinline!e!. \\
+        \lstinline!lista.insert(i, f)! & Inserta el elemento \lstinline!f! en la posición \lstinline!i!\footnote{Los elementos siguientes son desplazados en 1 posición a la derecha.}. \\
+        \lstinline!lista.sort()! & Ordena \lstinline!lista! en orden creciente. \\
+        \lstinline!lista1 + lista2! & Retorna una lista que concatena \lstinline!lista1! y \lstinline!lista2!. \\
+        \lstinline!lista * n! & Retorna una lista que concatena \lstinline!lista! \lstinline!n! veces\footnote{\lstinline!n! debe ser entero.}. \\
+    \end{tabular}
+\end{contentbox}
+
+\begin{contentbox}{label=Largo de una Secuencia}
+    El largo de la secuencia \lstinline!seq! se obtiene mediante la función nativa \lstinline!len(seq)!. Se entiende por ``largo'' de una secuencia como el total de elementos que hay en esta.
+    
+    En el caso de una lista, si tiene como elemento otra lista, este elemento sigue contando como uno solo.
+\end{contentbox}
+
+\begin{contentbox}{label=String a Lista y Viceversa}
+    \begin{itemize}
+        \item \lstinline!s.split(sep)! separa el string utilizando \texttt{sep} como separador y retorna una lista cuyos elementos son los fragmentos del string.
+        \item \lstinline!sep.join(lista)! une los elementos de \texttt{lista}, separados por \texttt{sep}, en un único string. Solo funciona si los elementos de la lista son strings.
+    \end{itemize}
 \end{contentbox}
