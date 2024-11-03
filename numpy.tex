@@ -1,0 +1,102 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MÓDULO numpy
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{contentbox}{label=Módulos externos}
+    Se pueden instalar módulos utilizando \lstinline!pip! en la terminal del sistema:
+\begin{lstlisting}[language=bash]
+pip install módulo
+\end{lstlisting}
+
+    Algunos módulos importantes:
+    
+    \begin{tabular}{C|p{0.6\linewidth}}
+        \lstinline!numpy! & Arreglos multidimensionales y computación científica. \\
+        \lstinline!matplotlib! & Visualizaciones y gráficos.
+    \end{tabular}
+    
+    Una vez instalados, se importan como cualquier otro módulo:
+\begin{lstlisting}
+import numpy as np
+\end{lstlisting}
+    Las próximas secciones asumirán que \lstinline!numpy! ha sido importado de esta manera.
+\end{contentbox}
+
+\begin{contentbox}{label=Arreglos en \lstinline!numpy!}
+    Se puede transformar una secuencia (o secuencia de secuencias) mediante la función:
+\begin{lstlisting}
+a = np.array(secuencia)
+\end{lstlisting}
+    
+    Todos los elementos del arreglo son del mismo tipo. El parámetro opcional \lstinline!dtype! permite especificar el tipo de dato (e.g. , \lstinline!dtype=float! para un arreglo de flotantes).
+    
+    El tipo de dato del arreglo es \lstinline!np.ndarray! y es mutable (soporta asignación de elementos).
+\end{contentbox}
+
+\begin{contentbox}{label=Operaciones de arreglo}
+    Siendo \lstinline!u! un arreglo,
+    
+    \begin{tabular}{C|p{0.6\linewidth}}
+        \lstinline!u[i]! & Posición \lstinline!i!. \\
+        \lstinline!u[i, j]! & Posición en fila \lstinline!i! y columna \lstinline!j! \\
+        \lstinline!u.shape! & Tupla con las dimensiones. \\
+        \lstinline!len(u)! & Tamaño de primera dimensión de \lstinline!u!. \\
+        \lstinline!u.flat! & Iterador undimensional con todos los elementos. \\
+        \lstinline!u.flatten()! & Copia unidimensional del arreglo.
+    \end{tabular}
+    
+    Para acceder a los elementos, tanto \lstinline!i! como \lstinline!j! pueden ser cortes (\textit{slices})
+\end{contentbox}
+
+\begin{contentbox}{label=Operaciones vectoriales}
+    Todos los operadores aritméticos básicos y de comparación se aplican elemento a elemento en arreglos del mismo tamaño, p.e.:
+\begin{lstlisting}
+w = u + v
+\end{lstlisting}
+    Aplica la suma a cada par de elementos. Similarmente, si \lstinline!a! es un escalar,
+\begin{lstlisting}
+v = a + u
+\end{lstlisting}
+    suma su valor a todos los elementos de \lstinline!u!.
+    
+    Para las operaciones lógicas vectoriales, existen los siguientes operadores:
+    
+    \begin{tabular}{C|p{0.6\linewidth}}
+        \lstinline!~u! & Negación por elementos. \\
+        \lstinline!u & v! & Y lógico elemento a elemento. \\
+        \lstinline!u | v! & O lógico elemento a elemento. \\
+        \lstinline!u ^ v! & O excluyente elemento a elemento. \\
+    \end{tabular}
+    
+    Estas operaciones tienen la misma precedencia que un comparador.
+\end{contentbox}
+
+\begin{contentbox}{label=Funciones vectoriales}
+    Las siguientes funciones son versiones para aplicar sobre todos los elementos de un array:
+    
+    \begin{tabular}{C|p{0.4\linewidth}}
+        \lstinline!np.sin(u)! & Seno. \\
+        \lstinline!np.cos(u)! & Coseno. \\
+        \lstinline!np.exp(u)! & Exponencial. \\
+        \lstinline!np.log(u)! & Logaritmo. \\
+        \lstinline!np.logical_not(u)! & \lstinline!~u! \\
+        \lstinline!np.logical_and(u, v)! & \lstinline!u & v! \\
+        \lstinline!np.logical_or(u, v)! & \lstinline!u | v! \\
+        \lstinline!np.logical_xor(u, v)! & \lstinline!u ^ v! \\
+        \lstinline!np.all(u)! & \lstinline!True! si todos lo son. \\
+        \lstinline!np.any(u)! & \lstinline!True! si alguno lo es. \\
+    \end{tabular}
+    
+\end{contentbox}
+
+\begin{contentbox}{label=Generadores}
+    Las siguientes funciones generan arreglos siguiendo diferentes patrones:
+    
+    \begin{tabular}{C|p{0.45\linewidth}}
+        \small
+        \lstinline!np.arange(n)! & \multirow{2}{=}{Arreglo como \lstinline!range!.} \\
+        \lstinline!np.arange(a, b, c)! & \\
+        \lstinline!np.linspace(a, b, c)! & \texttt{c} puntos desde \texttt{a} hasta \texttt{b}. \\
+        \lstinline!np.zeros(n)! & Arreglo de 0 de tamaño \texttt{n}. \\
+        \lstinline!np.ones(n)! & Arreglo de 1 de tamaño \texttt{n}. \\
+    \end{tabular}
+\end{contentbox}

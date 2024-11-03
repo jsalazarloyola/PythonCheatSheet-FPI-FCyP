@@ -1,0 +1,136 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FUNCIONES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{contentbox}{label=Funciones Nativas}
+    %Además de \lstinline!print! e \lstinline!input!, las siguientes funciones, entre otras, están siempre disponibles:
+    Estas funciones, entre otras, están siempre disponibles:
+    
+    \begin{tabular}{C|p{0.5\linewidth}}
+        \lstinline!abs(x)! & Valor absoluto de \texttt{x}. \\
+        \lstinline!max(seq)! & Retorna el máximo de \texttt{seq}. \\
+        \lstinline!min(seq)! & Retorna el mínimo de \texttt{seq}.\\
+        \lstinline!range(stop)! & \multirow{2}{=}{Genera una secuencia de valores enteros.} \\
+        \lstinline!range(i, f, s)! & \\
+        \lstinline!round(x)! & \multirow{2}{=}{Redondea \texttt{x} a entero o a \texttt{n} decimales.} \\
+        \lstinline!round(x, n)! & \\
+        \lstinline!sorted(seq)! & Retorna la secuencia \texttt{seq} ordenada \\
+        \lstinline!type(o)! & Retorna el tipo de \texttt{o} \\
+        \lstinline!isinstance(o, c)! & Verifica si \texttt{o} es del tipo \texttt{c} \\
+    \end{tabular}
+    
+    El nombre de cada tipo de dato es la función para cambiar a dicho tipo de dato, p.e.: \lstinline!x = int(y)! o \lstinline!l = list(s)! (si \texttt{s} es un conjunto o secuencia, como un string).
+\end{contentbox}
+
+\begin{contentbox}{label=Funciones Importadas}
+    Un módulo es un archivo que contiene definiciones y declaraciones en Python.
+    
+    Existen módulos estándar (siempre disponibles para importar), definidos por el programador y externos (instalados en el sistema).
+    
+    Para importar, utilizamos:
+    \begin{lstlisting}
+import module
+# Uso de, por ejemplo, func1:
+module.func1(params)
+# Alternativamente, podemos dar un 
+# alias
+import module as bla
+bla.func1(params)
+    \end{lstlisting}
+    
+    En casos especiales, podemos importar solo las funciones de interés utilizando:
+    \begin{center}
+        \lstinline!from module import func1, func2, func3!
+    \end{center}
+    De modo que se pueda utilizar \verb|func1|, \verb|func2| y \verb|func3| como si fuesen nativas.
+\end{contentbox}
+
+\begin{contentbox}{label=Definición de Funciones Propias}
+    La estructura básica de definición de funciones es:
+\begin{lstlisting}
+def func_name(arg1, arg2, arg3=valor):
+    definiciones_y_operaciones_locales
+    return resultado
+\end{lstlisting}
+
+    \begin{itemize}
+        \item Dondequiera que se encuentre \lstinline!return!, se finaliza la función y se entrega ese resultado. Puede haber varios, según si los resultados son condicionados.
+        \item Los parámetros son tantos como se requieran. Si no se requieren, los paréntesis van vacíos.
+        \item Los parámetros opcionales se escriben al final, dándoles su valor por defecto (como en \verb|arg3|).%, también separándolos por coma.
+    \end{itemize}
+
+    Una vez definida, se llama como una función nativa normal:
+\begin{lstlisting}
+# Solo parámetros obligatorios
+r = func_name(x, y)
+# Con el parámetro opcional
+r = func_name(x, y, z)
+# Dando nombre del parámetro opcional
+r = func_name(x, y, arg3=z)
+\end{lstlisting}
+\end{contentbox}
+
+\begin{contentbox}{label=Recursión}
+    Python solo requiere el nombre de la función para poder utilizarla, por lo que podemos construir una función en base a sí misma:
+\begin{lstlisting}
+def func(x):
+    if condición(x):
+        new_x = operaciones(x)
+        return func(new_x)
+    else:
+        return otras_operaciones(x)
+\end{lstlisting}
+\end{contentbox}
+
+\begin{contentbox}{label=Comentarios y Documentación}
+    Las líneas comenzadas por \lstinline!#! son comentarios e ignorados por el intérprete. Sirven para documentar el código para quien lo lea.
+    
+    Las funciones se pueden documentar con \textit{docstrings}, explicando su utilidad y forma de uso inmediatamente después de definirlas:
+\begin{lstlisting}
+def ejemplo(arg1, arg2=valor):
+    """Descripción de lo que hace la
+    función
+    
+    Entradas: Se describen sus entradas 
+    (incluyendo tipo de dato)
+    Salidas: Se describen sus salidas 
+    (incluyendo tipo de dato)
+    """
+    operaciones
+    return resultado
+\end{lstlisting}
+
+    Las docstrings son un tipo de string multilínea, pueden escribirse con triple comilla simple (\lstinline!'''así'''!) o triple comilla doble (\lstinline!"""así"""!).
+    
+    \textbf{N.B.}: Los comentarios son para quien leerá o modificará el código, las docstrings son para quien utilizará la función en el suyo propio.
+\end{contentbox}
+
+\begin{contentbox}{label=Módulos Estándar}
+    \small
+    \begin{tabular}{C|p{0.7\linewidth}}
+        \lstinline!math! & Funciones matemáticas. \\
+        \lstinline!sys! & Funciones y parámetros del intérprete. \\
+        \lstinline!op.path! & Manipulaciones de rutas de archivo. \\
+        \lstinline!random! & Generación de números pseudo aleatorios. \\
+        \lstinline!datetime! & Tipos básicos de fecha y hora. \\
+        \lstinline!copy! & Operaciones de copia superficial y profunda. \\
+        \lstinline!time! & Operaciones de tiempo. \\
+    \end{tabular}
+\end{contentbox}
+
+\begin{contentbox}{label=Importación de Módulos Propios}
+    Si escribimos funciones y constantes en un archivo independiente, puede importarse como cualquier otro módulo:
+\begin{lstlisting}
+# Si utilidades.py existe en la
+# misma carpeta
+import utilidades
+\end{lstlisting}
+
+Alternativamente,
+\begin{lstlisting}
+from utilidades import func
+\end{lstlisting}
+    
+    Se pueden importar nombres de funciones y constantes.
+    
+    El nombre del módulo no puede contener espacios.
+\end{contentbox}

@@ -1,0 +1,224 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% FUNDAMENTOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{contentbox}{label=Tipos Básicos}
+    \centering
+    \begin{tabular}{C|l|C}
+        int & Números enteros & 42\\
+        float & Números flotantes & 1.618\\
+        bool & Valores lógicos & True \\
+        str & Strings & \lstinline!"Monty"! \\
+        list & Listas & [1, 2, 3]
+    \end{tabular}
+\end{contentbox}
+
+\begin{contentbox}{label=Operaciones Básicas}
+    \begin{tabular}{C|p{0.5\linewidth}}
+        \lstinline!input("Mensaje")! & Muestra \lstinline!Mensaje! y recibe entrada por teclado del usuario\\
+        \lstinline!print(valor,...)! & Muestra por pantalla los \lstinline!valores! separados por coma \\
+        \lstinline!x = y! & Asignación, \lstinline!x! toma el valor de la expresión \lstinline!y!
+    \end{tabular}
+\end{contentbox}
+
+\begin{contentbox}{label=Operadores Aritméticos}
+    A igual nivel de precedencia (P) en las operaciones, se agrupan de a pares de izquierda a derecha.
+
+    \begin{center}
+        \begin{tabular}{C|l|c|c}
+            \textnormal{Ejemplo} & Operación & P & T\footnote{Tipo}\\
+            \hline
+            \lstinline!x ** y! & Exponenciación\footnote{Se agrupan de derecha a izquierda.} & 1 & B \\
+            \hline
+            \lstinline!+ x! & Identidad & 2 & U \\
+            \lstinline!- x! & Cambio de signo & 2 & U \\
+            \hline
+            \lstinline!x * y! & Multiplicación & 3 & B\\
+            \lstinline!x / y! & División & 3 & B \\
+            \lstinline!x // y! & División entera & 3 & B \\
+            \lstinline!x % y! & Módulo (resto\footnote{De la división entera.}) & 3 & B \\
+            \hline 
+            \lstinline!x + y! & Suma & 4 & B \\
+            \lstinline!x - y! & Resta & 4 & B \\
+            \hline
+        \end{tabular}
+    \end{center}
+    
+    Los operadores \alert{unarios} (U) toman solo un operando. Los operadores \alert{binarios} (B) toman dos.
+    
+    Todos los operadores aritméticos binarios tienen una versión de asignación como \lstinline!+=!, que se usa como en el ejemplo:
+    \begin{center}
+        \lstinline!x += y! se interpreta como \lstinline!x = x + y!
+    \end{center}
+\end{contentbox}
+
+\begin{contentbox}{label=Operadores lógicos}
+    A igual nivel de precedencia en las operaciones, se agrupan de a pares de izquierda a derecha.
+
+    \begin{center}
+        \begin{tabular}{C|l|c|c}
+            \textnormal{Ejemplo} & Operación & P & T \\
+            \hline
+            \lstinline!x > y! & Mayor que & 5 & B \\
+            \lstinline!x >= y! & Mayor o igual que & 5 & B \\
+            \lstinline!x < y! & Menor que & 5 & B \\
+            \lstinline!x <= y! & Menor o igual que & 5 & B \\
+            \lstinline!x == y! & Igual que & 5 & B \\
+            \lstinline+x != y+ & Distinto que & 5 & B \\
+            \lstinline!x in l! & Pertenece a & 5 & B \\
+            \lstinline!x not in l! & No pertenece a & 5 & B \\
+            \hline
+            \lstinline!not p! & Negación & 6 & U \\
+            \lstinline!p and q! & Y lógico & 7 & B \\
+            \lstinline!p or q! & O lógico & 8 & B \\
+            \hline
+        \end{tabular}
+    \end{center}
+\end{contentbox}
+
+\begin{contentbox}{label=Decisiones con \texttt{if}}
+    Ejecutar sentencias que solo deben ocurrir al cumplirse la \lstinline!<condición>! (\alert{expresión booleana}):
+\begin{lstlisting}
+if <condición>:
+    <sentencias condicionadas>
+\end{lstlisting}
+
+    Ejecutar sentencias que solo deben ocurrir al cumplirse una condición, y otras en caso que no:
+\begin{lstlisting}
+if <condición>:
+    <sentencias condicionadas>
+else:
+    <sentencias alternativas>
+\end{lstlisting}
+
+    Ejecutar sentencias que solo deben ocurrir al cumplirse una condición, otras en caso de que no se cumpla la primera condición, pero si una segunda condición\footnote{Tantas condiciones secundarias (\lstinline!elif!) como se necesite.}, y otras en caso de que no se cumpla la primera ni la segunda:
+\begin{lstlisting}
+if <condición 1>:
+    <sentencias condicionadas 1>
+elif <condición 2>:
+    <sentencias condicionadas 2>
+else:
+    <sentencias alternativas>
+\end{lstlisting}
+\end{contentbox}
+
+\begin{contentbox}{label=Bloques de decisiones}
+    Cada secuencia \lstinline!if!, \lstinline!if-else! o \lstinline!if-elif-else! es un bloque independiente.
+    
+    Dentro de un mismo bloque se ejecutarán las sentencias condicionadas a la primera condición válida comprobada.
+    
+    Si existieran 2 bloques de decisión consecutivos se ejecutarán las sentencias condicionadas a la primera condición válida para cada bloque de manera independiente.
+\end{contentbox}
+
+\begin{contentbox}{label=Ciclos con \texttt{while}}
+    Realizar una repetición condicionada de sentencias: 
+\begin{lstlisting}
+while <condición>:
+    <sentencias_a_repetir>
+\end{lstlisting}
+
+    Donde \lstinline!condición! es una \alert{expresión booleana} y \lstinline!<sentencias_a_repetir>! (última instrucción indentada con respecto a \lstinline!while!) es la secuencia de instrucciones a repetir.
+    
+    A través de este bloque, se asegura la ejecución de las \lstinline!<sentencias_a_repetir>! mientras se cumpla la \lstinline!condición! señalada.
+    
+    Se puede repetir cualquier sentencia, incluyendo otros ciclos.
+\end{contentbox}
+
+\begin{contentbox}{label=Banderas (\textit{Flags})}
+    Parte de la \lstinline!<condición>! puede ser una variable booleana: esta indica si se debe continuar o no, según qué ocurra en el ciclo:
+    
+\begin{lstlisting}
+i = 1
+keep_going = True
+while keep_going and i <= 5:
+    if i % 2 == 0:
+        keep_going = False
+    i += 1
+\end{lstlisting}
+
+    Haciendo uso de decisiones (\lstinline!if!) y de una bandera (\lstinline!keep_going!), se puede verificar si se cumple una condición adicional bajo la cual detener el ciclo antes de que el iterador \lstinline!i! llegue a su límite.
+\end{contentbox}
+
+\begin{contentbox}{label=Listas}
+    \begin{tabular}{C|p{0.5\linewidth}}
+        \lstinline!lista = [1, 2, 3]! & Define un objeto de tipo lista. \\
+        \lstinline!lista[i]! & Retorna el elemento en la posición \lstinline!i!. Soporta de \lstinline!0! a \lstinline!n-1!\footnote{Con \lstinline!n! equivalente al largo de la lista.} de izquierda a derecha y de \lstinline!-1! a \lstinline!-n! de derecha a izquierda. \\
+        \lstinline!lista.append(4)! & Añade el elemento \lstinline!4! al final de la lista. \\
+        \lstinline!lista[j] = z! & Redefine el valor del elemento en la posición \lstinline!j! de la lista a \lstinline!z!. \\
+        \lstinline!lista.pop(k)! & Retorna el elemento en la posición \lstinline!k! y lo elimina de \lstinline!lista!. Sin parámetros retorna y elimina el último elemento. \\
+        \lstinline!lista.count(c)! & Retorna la cantidad de apariciones del elemento \lstinline!c!. \\
+        \lstinline!lista.index(d)! & Retorna la posición del elemento \lstinline!d!. \\
+        \lstinline!lista.remove(e)! & Elimina la primera aparición del elemento \lstinline!e!. \\
+        \lstinline!lista.insert(i, f)! & Inserta el elemento \lstinline!f! en la posición \lstinline!i!\footnote{Los elementos siguientes son desplazados en 1 posición a la derecha.}. \\
+        \lstinline!lista.sort()! & Ordena \lstinline!lista! en orden creciente. \\
+        \lstinline!lista1 + lista2! & Retorna una lista que concatena \lstinline!lista1! y \lstinline!lista2!. \\
+        \lstinline!lista * n! & Retorna una lista que concatena \lstinline!lista! \lstinline!n! veces\footnote{\lstinline!n! debe ser entero.}. \\
+    \end{tabular}
+\end{contentbox}
+
+% \begin{contentbox}{label=Largo de una Lista}
+%     El largo de la lista \lstinline!lista! se obtiene mediante la función nativa \lstinline!len(lista)!. Se entiende por ``largo'' el total de elementos que hay en esta.
+    
+%     Si una lista tiene como elemento otra lista, este elemento sigue contando como uno solo.
+% \end{contentbox}
+
+\begin{contentbox}{label=Largo de una Secuencia}
+    El largo de la secuencia \lstinline!seq! se obtiene mediante la función nativa \lstinline!len(seq)!. Se entiende por ``largo'' de una secuencia como el total de elementos que hay en esta.
+    
+    En el caso de una lista, si tiene como elemento otra lista, este elemento sigue contando como uno solo.
+\end{contentbox}
+
+\begin{contentbox}{label=Cortes y Copias}
+    Pueden accederse \alert{cortes} de una secuencia como una lista o string mediante la \alert{notación slice}. Su notación básica es
+    \begin{center}
+        \lstinline!objeto[a:b:c]!,
+    \end{center}
+    retornando un objeto del mismo tipo del seccionado, con \lstinline!a! el índice inicial del corte, \lstinline!b! el índice final (él último índice retornado será siempre el mayor valor posible menor a \lstinline!b!) y \lstinline!c! la distancia entre dos elementos consecutivos recuperados. \lstinline!a! y \lstinline!b! deben ser índices válidos y \lstinline!c! debe ser un número entero (positivo o negativo).
+    
+    Esta notación tiene las siguientes variaciones:
+    \begin{itemize}
+        \item Si se omite \lstinline!a! (pero no \lstinline!:!), inicia desde el comienzo.
+        \item Si se omite \lstinline!b! (pero no \lstinline!:!), llega hasta el final.
+        \item Si se omite \lstinline!c! (incluyendo o no \lstinline!:!), se asume 1.
+    \end{itemize}
+\end{contentbox}
+
+\begin{contentbox}{label=Consultas sobre Strings}
+    Todos estos métodos devuelven \texttt{True} o \texttt{False}.
+    
+    \begin{tabular}{C|p{0.5\linewidth}}
+        \lstinline!s.isupper()! & Todas las letras son mayúsculas y hay al menos una. \\
+        \lstinline!s.islower()! & Todas las letras son minúsculas y hay al menos una. \\
+        \lstinline!s.isalpha()! & Todos los caracteres son alfabéticos. \\
+        \lstinline!s.isdigit()! & Todos los caracteres son dígitos. \\
+        \lstinline!s.isalnum()! & Todos los caracteres son alfabéticos o dígitos. \\
+        \lstinline!s.endswith(t)! & El string termina con \texttt{t}. \\
+        \lstinline!s.startswith(t)! & El string empieza con \texttt{t}.
+    \end{tabular}
+\end{contentbox}
+
+\begin{contentbox}{label=String a Lista y Viceversa}
+    \begin{itemize}
+        \item \lstinline!s.split(sep)! separa el string utilizando \texttt{sep} como separador y retorna una lista cuyos elementos son los fragmentos del string.
+        \item \lstinline!sep.join(lista)! une los elementos de \texttt{lista}, separados por \texttt{sep}, en un único string. Solo funciona si los elementos son strings.
+    \end{itemize}
+\end{contentbox}
+
+\begin{contentbox}{label=Strings}
+    \begin{tabular}{C|p{0.5\linewidth}}
+        \lstinline!s = "Monty"! & \multirow{2}{=}{Define un objeto de tipo string.} \\
+        \lstinline!s = 'Python'! \\
+        \lstinline!s.find(sub)! & Retorna el índice donde empieza \texttt{sub}. \\
+        \lstinline!s.rfind(sub)! & Como \texttt{find}, pero desde la derecha. \\
+        \lstinline!s.index(sub)! & Como \texttt{find}, pero arroja error si no encuentra.\\
+        \lstinline!s.lower()! & Retorna el string en minúscula. \\
+        \lstinline!s.upper()! & Retorna el string en mayúscula. \\
+        \lstinline!s.strip(t)! & Retorna el string eliminando los caracteres en \texttt{t} de los extremos del string. \\
+        \lstinline!s.strip()! & Como \texttt{strip}, pero eliminando espacios en blanco. \\
+        % \lstinline!s.lstrip()! & Igual a \texttt{strip}, pero solo a la izquierda. \\
+        % \lstinline!s.rstrip()! & Igual a \texttt{strip}, pero solo a la derecha. \\
+        % 
+        \lstinline!s.capitalize()! & Retorna el string convertido con el primer caracter a mayúscula, si es una letra, y el resto a minúscula. \\
+        \lstinline!s.title()! & Retorna el string en ``Formato De Título''. \\
+        \lstinline!s.count(sub)! & Retorna la cantidad de apariciones no superpuestas de \texttt{sub}.
+    \end{tabular}
+\end{contentbox}

@@ -1,0 +1,220 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MÓDULO pandas
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{contentbox}{label=Objetos Básicos de Pandas}
+    La importación tradicional de \texttt{pandas} es
+    \begin{center}
+        \lstinline!import pandas as pd!
+    \end{center}
+    
+    Un \texttt{DataFrame} es una tabla con índices \alert{ordenados} para filas y columnas. Pueden ser numerados (por defecto, posiciones de listas) o nombrados (números, strings). En ambos casos sirven como \textbf{claves}. Se crean con:
+    
+    \begin{lstlisting}
+df = pd.DataFrame(datos, index=filas, 
+                  columns=columnas,
+                  dtype=tipos)
+    \end{lstlisting}
+    
+    con los parámetros:
+    \begin{description}
+    \item[\texttt{datos}] matriz con los elementos de la tabla. Para listas de listas cada lista es una fila y cada elemento de ella una nueva columna.
+    \item[\texttt{index}] lista con nombres de filas.
+    \item[\texttt{columns}] lista con nombres de columnas.
+    \item[\texttt{dtype}] Tipo de dato de las columnas
+    \end{description}
+\vspace{-13pt}
+\end{contentbox}
+
+\begin{contentbox}{label=DataFrame a partir de \textsc{csv}}
+    \begin{lstlisting}
+Tabla = pd.read_csv("ruta/fichero.csv",
+                    sep=",",
+                    header=n,
+                    index_col=m,
+                    decimal=".")
+    \end{lstlisting}
+    
+    con los parámetros:
+    \begin{description}
+    \item[\texttt{sep}] - separador de columnas (por defecto \lstinline!","!).
+    \item[\texttt{header}] -  número de fila del encabezado (nombres de columnas).
+    \item[\texttt{index\_col}] - número de la columna con los índices de fila.
+    \item[\texttt{decimal}] - Indicador de parte decimal (por defecto, \lstinline!"."!).
+    \end{description}
+    
+    Otros parámetros:
+    \begin{description}
+    \item[\texttt{names}] Lista de nombres de columnas.
+    \item[\texttt{usecols}] Lista de nombres de columnas a usar.
+    \item[\texttt{dtype}] Diccionario de columnas y tipos.
+    \end{description}
+\end{contentbox}
+
+\begin{contentbox}{label=DataFrame a partir de Hoja de Cálculo}
+    \begin{lstlisting}
+Tabla = pd.read_excel("ruta/fichero",
+                      sheet_name=sheet)
+    \end{lstlisting}
+    
+    Se usa \lstinline!sheet_name! para especificar el nombre o número de la hoja a cargar. Si no se hace, se carga la primera.
+    
+    Todos los parámetros mencionados de \lstinline!pd.read_csv! tienen el mismo significado, salvo \texttt{delimiter} y \texttt{decimal}, que no existen en esta función.
+\end{contentbox}
+
+\begin{contentbox}{label=Información de DataFrame}
+    \begin{tabular}{C|p{0.65\linewidth}}
+        \lstinline!df.info()! & Resumen informativo. \\
+        \lstinline!df.head(n)! &  Primeras \texttt{n} líneas. \\
+        \lstinline!df.tail(n)! &  Últimas \texttt{n} líneas. \\
+        \lstinline!df.shape! & Tupla con las dimensiones en la forma \lstinline!(filas, columnas)!. \\
+        \lstinline!df.columns! &  Iterable con nombres de columnas. \\
+        \lstinline!df.index! &  Iterable con nombres de filas.
+    \end{tabular}
+\end{contentbox}
+
+\begin{contentbox}{label=Acceso a un DataFrame}
+    \begin{tabular}{C|p{0.55\linewidth}}
+        \lstinline!df[col]! & Acceso a la columna \texttt{col}. \\
+        \lstinline!df[l_cols]! & Acceso a las columnas \lstinline!l_cols! (lista de columnas). \\
+        \lstinline!df[col][row]! &  Acceso al elemento en la columna \texttt{col} y la fila \texttt{row}. \\
+        \lstinline!df.loc[row]! & Acceso a la fila \texttt{row}. \\
+        \lstinline!df.loc[l_rows]! & Acceso a las filas \lstinline!l_rows! (lista de filas). \\
+        \lstinline!df.loc[row, col]! &  Acceso al elemento en la fila \texttt{row} y la columna \texttt{row}. \\
+        \lstinline!l_cols!. \\
+        \lstinline!df.iloc[n]! &  Acceso a la fila \texttt{n}. \\
+        \lstinline!df.iloc[n, m]! &  Acceso al elemento en la fila \texttt{n} y columna \texttt{m}. \\
+    \end{tabular}
+    
+    Cuando accedemos a solo una fila o una columna, obtenemos una \lstinline!pd.Series!, una ``lista'' cuyos índices son las filas del \texttt{DataFrame}.
+    
+    La diferencia entre \texttt{iloc} y \texttt{loc} es que la primera funciona con las posiciones como enteros (equivalente a listas), mientras que la segunda, con los \alert{nombres} de las filas y columnas.
+    
+    Al acceder a un dato, fila o columna es posible cambiar su valor haciendo la asignación respectiva (equivalente a listas).
+\end{contentbox}
+
+\begin{contentbox}{label=Segmentos en \texttt{DataFrame}}
+    La nomenclatura de segmentos puede ser utilizada en todos los mecanismos de acceso a un \texttt{DataFrame}, en cualquiera de sus dimensiones:
+    
+    \begin{tabular}{C|p{0.5\linewidth}}
+        \lstinline!df.iloc[a:b:c]! &  Segmento de la fila \texttt{a} a \texttt{b}, sin incluirla, cada \texttt{c} filas. \\
+        \lstinline!df.iloc[n, :b]! &  Fila \texttt{n} hasta la columna anterior a \texttt{b}. \\
+        \lstinline!df.iloc[a:, m]! &  Desde la fila \texttt{a}, la columna \texttt{m}. \\
+        \lstinline!df.iloc[a:b, c:]! &  Filas \texttt{a} hasta \texttt{b}, sin incluirla, y desde la columna \texttt{c}.
+    \end{tabular}
+    
+    A diferencia de las posiciones enteras accedidas con \lstinline!iloc!, al utilizar los nombres de filas y columnas (con \lstinline!loc! o el operador \lstinline![]!), la columna de término sí es accedida:
+    
+    \begin{tabular}{C|p{0.5\linewidth}}
+        \lstinline!df["c_1":"c_2"]! &  Desde la columna \lstinline!c_1! hasta \lstinline!c_2!. \\
+        \lstinline!df["c_1":"c_2":2]! &  Desde la columna \lstinline!c_1! hasta \lstinline!c_2! cada dos. \\
+        \lstinline!df.loc["r_1":"r_2]! &  Desde la fila \lstinline!r_1! hasta \lstinline!r_2!. \\
+    \end{tabular}
+\end{contentbox}
+
+\begin{contentbox}{label=Operaciones Vectoriales}
+    Las operaciones aritméticas básicas de Python son \alert{vectoriales} en \texttt{pandas}. Esto significa que, al operar dos \texttt{DataFrame} o \texttt{Series} del mismo tamaño, se operan elemento a elemento:
+    \begin{lstlisting}
+sumas = df["col_1"] + df["col_2"]
+    \end{lstlisting}
+    
+    Si se operan con un escalar, este se opera sobre todos los elementos del \texttt{DataFrame} o \texttt{Series}.
+    \begin{lstlisting}
+amplificada = 10*df["col_1"]
+    \end{lstlisting}
+    
+    En el caso de operaciones de comparación, resultan en un \texttt{DataFrame} o \texttt{Series} de \alert{booleanos}:
+    \begin{lstlisting}
+filtro = df["col_3"] > df["col_4"]
+    \end{lstlisting}
+    
+\end{contentbox}
+
+\begin{contentbox}{label=Operaciones Lógicas Vectoriales}
+    \begin{tabular}{C|p{0.35\linewidth}}
+        \lstinline!df["col_1"] & df["col_2"]! & Y lógico vectorial. \\
+        \lstinline!df["col_1"] | df["col_2"]! &  O lógico vectorial. \\
+        \lstinline!~df["col"]! &  No lógico vectorial. \\
+        \lstinline!df["col_1"]^df["col_2"]! & O lógico excluyente vectorial.
+    \end{tabular}
+    
+    Todas estas operaciones evalúan el operador elemento a elemento en las columnas.
+\end{contentbox}
+
+\begin{contentbox}{label=Filtrado en \texttt{pandas}}
+    Alternativamente a los métodos habituales de acceso, una \texttt{Series} o \texttt{DataFrame} de booleanos puede ser válida como índice. Hacer esto genera un subconjunto de los elementos originales que contiene solo los elementos cuya posición está marcada como \lstinline!True!.
+    
+    Podemos usar operadores booleanos vectoriales para filtrar los datos:
+    \begin{lstlisting}
+# Subconjunto con los valores en 
+# "col_3" entre 2 y 5
+df[df["col_3"] > 2 & df["col_3"] < 5]
+    \end{lstlisting}
+
+    El resultado es un nuevo \texttt{DataFrame}.
+    
+    Otras operaciones booleanas (i.e. válidas como filtro) incluyen:
+    
+    \begin{tabular}{C|p{0.35\linewidth}}
+        \lstinline!df.isin(a, b)! & Si las ubicaciones están entre \texttt{a} y \texttt{b} \\
+        \lstinline!df.isna()! &  Posiciones con valores nulos o vacíos \\
+        \lstinline!df.notna()! &  \lstinline!~df.isna()!. \\
+    \end{tabular}
+\end{contentbox}
+
+\begin{contentbox}{label=Agregar y eliminar información}
+    \begin{tabular}{C|p{0.45\linewidth}}
+        \lstinline!df[Nombre] = Datos! & Agrega al final la columna \lstinline!Nombre! con los datos \lstinline!Datos!. \\
+        \lstinline!df.insert(n, N, D)! & Agrega la columna \lstinline!N! con los datos \lstinline!D! en la posición \lstinline!n!. \\
+        \lstinline!df.drop(Ns, axis=x)! & Elimina las filas (\lstinline!x=0!) o columnas (\lstinline!x=1!) cuyos nombres estén en (\lstinline!Ns!). \\
+    \end{tabular}
+    
+    \vspace{\baselineskip}
+    Para unir dos \lstinline!DataFrames! se puede utilizar la instrucción:
+    \begin{center}
+        \lstinline!new_df = pd.concat([df_1, df_2], axis=x)!    
+    \end{center}
+    
+    donde el orden de los \lstinline!DataFrame! determina el orden en que aparecen los datos en el nuevo \lstinline!DataFrame! y el valor de \lstinline!axis! determina si la unión se hace uno sobre otro (0) o uno al lado del otro (1).
+    
+    Si la unión se hace lateral, los datos se ordenarán haciendo coincidir sus índices; en caso de que algunas filas no tengan los mismo índices, se generan filas con la información del \lstinline!DataFrame! original, rellenando con valores \lstinline!NaN!.
+    
+    En el caso de uniones verticales el parámetro opcional \lstinline!ignore_index! (\lstinline!False!, por defecto), al asignarle \lstinline!True!, permite resetear los índices.
+\end{contentbox}
+
+\begin{contentbox}{label=Exportación de Archivos}
+    Los \texttt{DataFrame} pueden ser exportados a \textsc{csv} u hoja de cálculo con las siguientes funciones:
+    \begin{lstlisting}
+df.to_csv(fichero.csv,
+          sep=",",
+          header=True,
+          index=True,
+          decimal=".")
+df.to_csv(fichero.csv,
+          sheet_name="Sheet1",
+          header=True,
+          index=True)
+    \end{lstlisting}
+    donde los valores por defecto de los parámetros son los dados. Los parámetros \texttt{header} e \texttt{index} señalan si se incluyen los nombres de columnas y filas, respectivamente, en el archivo de salida.
+\end{contentbox}
+
+\begin{contentbox}{label=Agregación}
+    Son \alert{funciones de agregación} aquellas que convierten varios valores en uno solo. Las siguientes funciones generan un valor, si se ejecutan sobre una columna, o una \texttt{Series}, si se ejecutan sobre varias, cuyos índices son las columnas y los valores, el resultado por columna:
+    
+    \begin{tabular}{C|p{0.6\linewidth}}
+        \lstinline!df.count()! & Cuenta celdas no vacías \\
+        \lstinline!df.max()! &  El máximo de los valores \\
+        \lstinline!df.min()! & El mínimo de los valores \\
+        \lstinline!df.idxmax()! &  El índice del máximo de los valores \\
+        \lstinline!df.idxmin()! & El índice del mínimo de los valores \\
+        \lstinline!df.sum()! & La suma de los valores de las celdas
+    \end{tabular}
+\end{contentbox}
+
+\begin{contentbox}{label=Operaciones vectoriales de string}
+    Una \texttt{Series} (y, por ende, una columna de un \texttt{DataFrame}) contiene el atributo \texttt{str}, que permite acceder a todas las funciones de string habituales, pero aplicadas a cada elemento de la serie. Esto incluye algunas funciones adicionales, para emular algunos operadores:
+    
+    \begin{tabular}{C|p{0.35\linewidth}}
+        \lstinline!df["c"].str.contains(text)! & Verifica si \texttt{text} está en cada celda. \\
+        \lstinline!df["c"].str.get(i)! &  Retorna el caracter en la posición \texttt{i} de cada celda.
+    \end{tabular}
+\end{contentbox}

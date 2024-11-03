@@ -1,0 +1,97 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ARCHIVOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{contentbox}{label=Ciclos con \texttt{for}}
+    Repite la acción por cada elemento de la secuencia:
+\begin{lstlisting}
+for elemento in secuencia:
+    acciones_a_repetir
+\end{lstlisting}
+    
+    La variable \lstinline!elemento! es definida en está secuencia y su valor es cada elemento de la secuencia en orden.
+    
+    Entre las secuencias, se incluyen (entre muchos otros) archivos, \lstinline!list!, \lstinline!str!, \lstinline!range!, etc.
+\end{contentbox}
+
+\begin{contentbox}{label=Función \lstinline!range!}
+    Generación de secuencias numéricas:
+    \begin{itemize}
+        \item \lstinline!range(stop)! genera números de 0 a \texttt{stop-1}.
+        \item \lstinline!range(start, stop, d)! genera números desde \texttt{start} hasta \texttt{stop-1}, con distancia de \texttt{d} entre ellos.
+    \end{itemize}
+    
+%     Por ejemplo, para mostrar todos los números desde 0 a $n-1$:
+% \begin{lstlisting}
+% for i in range(n):
+%     print(i)
+% \end{lstlisting}
+
+    Nótese que \lstinline!range! no es una lista, pero puede convertirse a una mediante \lstinline!list(range(n))!.
+\end{contentbox}
+
+\begin{contentbox}{label=Archivos}
+    Un archivo es un objeto especial en Python creado con la función nativa \lstinline!open!:
+    
+    \begin{center}
+        \lstinline!file = open(ruta, modo)!
+    \end{center}
+    
+    El parámetro \texttt{ruta} (\lstinline!str!) especifica dónde encontrar el archivo (carpetas y nombre).
+    
+    Cuando dejamos de usar el archivo, debemos cerrarlo, para lo que se utiliza el método \lstinline!close!, como en \lstinline!file.close()!.
+\end{contentbox}
+    
+\begin{contentbox}{label=Parámetros de archivo}
+    Pueden darse tres modos de apertura:
+    
+    \begin{center}
+        \begin{tabular}{C|p{0.5\textwidth}}
+            \textnormal{Opción} & Modo \\
+            \hline
+            r & Lectura \\
+            w & Escritura \\
+            a & Añadir
+        \end{tabular}
+    \end{center}
+    
+    Si la codificación del archivo no es la del sistema, se puede especificar con \lstinline!encoding!:
+    \begin{lstlisting}
+file = open(ruta, modo,
+            encoding="utf8")
+    \end{lstlisting}
+    
+    Las principales codificaciones aquí son \lstinline!utf8! y \lstinline!latin1!.
+\end{contentbox}
+    
+\begin{contentbox}{label=Operación \lstinline!with!}
+    Podemos utilizar un administrador de contexto para trabajar con archivos, a través del bloque \lstinline!with ... as...!, en cuyo caso no es necesario utilizar \lstinline!close!:
+    \begin{lstlisting}
+with open(ruta, modo) as file:
+    operaciones_sobre(file)
+    \end{lstlisting}
+\end{contentbox}
+
+\begin{contentbox}{label=Operaciones sobre Archivos}
+    Los métodos básicos de archivo son:
+    
+    \begin{tabular}{C|p{0.5\linewidth}}
+        \lstinline!file = open(r, m)! & Abre el archivo en la ubicación \texttt{r} con modo \texttt{m}. \\
+        \lstinline!file.read()! &  \multirow{2}{=}{Lee todo el archivo o hasta \texttt{n} caracteres.} \\
+        \lstinline!file.read(n)! &  \\
+        \lstinline!file.readline()! &  Lee como string hasta el próximo final de línea. \\
+        \lstinline!file.readlines()! &  Lee como lista de strings todo el archivo. \\
+        \lstinline!file.write(s)! & Escribe el string \texttt{s} en el archivo. \\
+        \lstinline!file.writelines(l)! & Escribe la lista de strings \texttt{l} en el archivo. \\
+        \lstinline!file.close()! & Cierra el archivo, impidiendo futuros accesos. \\
+    \end{tabular}
+    
+    Cada lectura y escritura se hacen a partir de donde terminó la anterior. Toda lectura y escritura es \emph{literal}: no se añaden ni quitan caracteres.
+    
+%     Además, el archivo puede ser leído como una secuencia mediante \lstinline!for!, en cuyo caso cada elemento de la secuencia es una línea (string):
+% \begin{lstlisting}
+% for line in file:
+%     print(line.strip("\n"))
+% \end{lstlisting}
+% \vspace{-12pt}
+\end{contentbox}

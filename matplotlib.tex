@@ -1,0 +1,155 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MÓDULO Matplotlib
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{contentbox}{label=Módulo Matplotlib}
+    El módulo Matplotlib permite visualizar y crear gráficos a través de su interfaz \texttt{pyplot}:
+    
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+\end{lstlisting}
+
+    Las funciones principales se obtienen a partir de este submódulo. Tras generar los gráficos, estos se visualizan usando:
+\begin{lstlisting}
+plt.show()
+\end{lstlisting}
+\end{contentbox}
+
+\begin{contentbox}{label=Gráfico de línea}
+    Se crean gráficos de líneas con \lstinline!plt.plot!. Su parámetro son arreglos o equivalentes con valores numéricos:
+    
+\begin{lstlisting}
+# Gráfico de y versus sus índices
+g = plt.plot(y)
+# Gráfico de y versus x
+g = plt.plot(x, y)
+# Gráfico de y versus x rojo
+g = plt.plot(x, y, 'r')
+\end{lstlisting}
+    
+    Retorna una lista de gráficos.
+    
+    Pueden graficarse varias líneas agrupando dos o tres parámetros: eje $x$, eje $y$, formato (opcional):
+\begin{lstlisting}
+g = plt.plot(x_1, y, x_1, z, x_2, f)
+\end{lstlisting}
+\end{contentbox}
+
+\begin{contentbox}{label=Estilo de las líneas}
+    El estilo del gráfico se controla mediante la función \lstinline!plt.setp! y sus parámetros:
+\begin{lstlisting}
+plt.setp(g, param_1=valor,
+         param_2=valor,...)
+\end{lstlisting}
+    El parámetro \lstinline!g! es un gráfico o lista de gráficos. El resto de parámetros incluye:
+    
+    \begin{tabular}{C|p{0.5\textwidth}}
+        color & Color de la línea. \\
+        marker & Tipo de marcador. \\
+        markersize & Tamaño de marcador en puntos. \\
+        linestyle & Tipo de línea. \\
+        linewidth & Ancho de línea en puntos.
+    \end{tabular}
+
+\end{contentbox}
+
+\begin{contentbox}{label=Gráfico Circular}
+    Se genera con \lstinline!plt.pie! y requiere un vector o lista con valores. Genera una ``torta'' de radio 1. Sus parámetros incluyen:
+
+    \begin{tabular}{C|p{0.5\textwidth}}
+        autopct & \lstinline!str! para etiquetar las porciones con su valor. \\
+        labels & Secuencia de etiquetas. \\
+        explode & Secuencia con distancia del centro para cada porción. \\
+        labeldistance & Distancia de la etiqueta. \\
+        rotatelabels & Para \lstinline!True!, rota las etiquetas para cada porción.
+    \end{tabular}
+    
+    Ejemplo:
+\begin{lstlisting}
+valores = [0, 2, 1, 3]
+etiquetas = ["a", "b", "c", "d"]
+plt.pie(valores, labels=etiquetas,
+        autopct="%1.f%%")
+\end{lstlisting}
+\end{contentbox}
+
+\begin{contentbox}{label=Histograma}
+    Muestra frecuencia de ocurrencia de valores en contenedores (\textit{bins}). Su parámetro \lstinline!bins! es cuántos contenedores hay o una secuencia que los especifique:
+    
+\begin{lstlisting}
+dados = np.random.randint(1, 10, 10000)
+plt.hist(dados, bins=5)
+\end{lstlisting}
+
+\end{contentbox}
+
+\begin{contentbox}{label=Gráfico de Barras}
+    Un gráfico de barras se construye igual que el de líneas, pero solo uno a la vez. Sus parámetros principales son posición y alto de cada barra:
+\begin{lstlisting}
+plt.bar(np.arange(len(valores)),
+        valores, width=0.8,
+        align='center')
+\end{lstlisting}
+
+    Los valores por defecto de los parámetros son los dados.
+    
+    Para un gráfico de barras horizontal, se usa \lstinline!plt.barh! y se intercambian los parámetros height y width:
+\begin{lstlisting}
+plt.barh(np.arange(len(valores)),
+         valores, height=0.8,
+         align='center')
+\end{lstlisting}
+\end{contentbox}
+
+\begin{contentbox}{label=Etiquetas del gráfico}
+\begin{lstlisting}
+plt.title("Título del gráfico")
+plt.xlabel("Eje $x$")
+plt.ylabel("Eje $y$")
+# Posiciones y etiquetas deben
+# ser del mismo largo
+# Etiquetas pueden ser strings
+plt.xticks(posiciones_x, etiquetas_x)
+plt.yticks(posiciones_y, etiquetas_y)
+\end{lstlisting}
+\end{contentbox}
+
+\begin{contentbox}{label=Leyenda}
+    Las leyendas se incluyen a partir de las etiquetas de cada gráfico (parámetro opcional \lstinline!label!) o directamente con \lstinline!plt.legend!.
+    
+\begin{lstlisting}
+# Genera leyenda a partir de etiquetas
+# previas
+plt.legend()
+# Explícitamente se dan las leyendas
+# (en orden de creación)
+plt.legend(["a", "b", "c"])
+# Asignando explícitamente a cada uno
+plt.legend(g, "a")
+\end{lstlisting}
+\end{contentbox}
+
+\begin{contentbox}{label=Múltiples gráficos}
+\begin{lstlisting}
+# Crea y selecciona figura en blanco
+fig = plt.figure()
+# Selecciona figura n
+fig = plt.figure(n)
+# Selecciona el subgráfico i
+# al subdividir la figura en n por m
+plt.subplot(n, m, i)
+\end{lstlisting}
+    Se crean los gráficos en la última figura seleccionada.
+\begin{lstlisting}
+# Crea figura y un eje para graficar
+fig, ax = plt.subplots()
+ax.plot(x, y)
+# Crea figura y arreglo de n ejes
+# para graficar
+fig, ax = plt.subplots(n)
+ax[0].plot(x, y)
+# Crea figura y matriz de
+# n por m de ejes
+fig, ax = plt.subplots(n, m)
+ax[0, 0].plot(x, y)
+\end{lstlisting}
+\end{contentbox}
