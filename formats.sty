@@ -1,0 +1,96 @@
+% Colores
+\RequirePackage{xcolor}
+% Colores primarios USACH
+\definecolor{UsachBlue}{HTML}{002F6C}
+\definecolor{UsachOrange}{HTML}{EA7600}
+\definecolor{UsachGray}{HTML}{B1B1B1}
+
+% Colores secundarios USACH
+\definecolor{UsachOrange2}{HTML}{DE7C00}
+\definecolor{UsachGray2}{HTML}{394049}
+\definecolor{UsachPurple}{HTML}{07D149}
+\definecolor{UsachMaroon}{HTML}{7C2529}
+\definecolor{UsachGray3}{HTML}{5C7380}
+\definecolor{UsachBlue2}{HTML}{254A5D}
+
+% TikZ
+\RequirePackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
+\RequirePackage{pgfkeys}
+
+% Estilo de las cajas
+\tikzstyle{mybox} = [draw=UsachBlue, fill=white, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=10pt]
+\tikzstyle{fancytitle} =[fill=UsachBlue, text=white, font=\bfseries]
+
+% ------------------------------------------------------------------------
+% Tamaño de la caja (reiniciable cada vez)
+\newlength{\boxwidth}
+% Claves para controlar las cajas
+\pgfkeys{
+    % Definimos la "carpeta" para las claves a usar
+    /content box/.is family,
+    % Cambiamos a la carpeta para las claves a definir
+    /content box,
+    % Etiqueta de la caja, para poner de título
+    label/.store in =\boxlabel,
+    label/.value required,
+    % % Ancho de la "caja" (la minipage que se utiliza para encerrarla)
+    width/.code = {\setlength{\boxwidth}{#1}},
+    width/.default = 0.29\textwidth,
+    % Hay que pedir la clave, para que se defina
+    width
+}
+
+% Ambiente nuevo para las cajas
+\newenvironment{contentbox}[1]{
+    \pgfkeys{/content box, #1}
+    \begin{tikzpicture}
+        \node [mybox] (box) \bgroup%
+            \begin{minipage}{\boxwidth}
+}
+{
+            \end{minipage}
+        \egroup;
+        %----- TITLE----
+        \node[fancytitle, right=10pt] at (box.north west) {\boxlabel};
+    \end{tikzpicture}
+}
+% ------------------------------------------------------------------------
+
+% Título
+\usepackage{calc}
+
+% Dimensiones del título
+\newdimen\titlegraphicheight
+\newdimen\titlegraphicwidth
+
+% Logo para el título
+\def\@titlegraphic{~}
+\gdef\titlegraphic#1{\gdef\@titlegraphic{#1}}
+
+\AtBeginDocument{
+    % Get titlegraphic height
+    \settototalheight{\titlegraphicheight}{\hbox{\@titlegraphic}}
+    \settowidth{\titlegraphicwidth}{\hbox{\@titlegraphic}}
+}
+
+% Nueva forma de hacer título
+\renewcommand{\maketitle}{
+    \centering
+    \begin{minipage}[b]{0.8\linewidth}
+        \centering
+        % \color{titlefgcolor}
+        {\bfseries \huge \sc \@title \par}
+        \vspace*{1em}
+        {\large \@author \par}
+        % \vspace*{1em}
+        % {\LARGE \@institute}
+    \end{minipage}
+    \tikz[remember picture,overlay]
+        %\node[anchor=south east,xshift=0.5\linewidth,inner sep=0pt] {%
+        \node[shift={(-0.8\titlegraphicwidth, -0.8\titlegraphicheight)}] at (current page.north east)
+        {\@titlegraphic};
+}
+
+\providecommand{\alert}[1]{\textcolor{UsachMaroon}{#1}}
