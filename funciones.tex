@@ -1,3 +1,4 @@
+% !TEX root=main.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % FUNCIONES
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -7,6 +8,7 @@
     
     \begin{tabular}{C|p{0.5\linewidth}}
         \lstinline!abs(x)! & Valor absoluto de \texttt{x}. \\
+        \lstinline!help(x)! & Muestra ayuda sobre \texttt{x}. \\
         \lstinline!max(seq)! & Retorna el máximo de \texttt{seq}. \\
         \lstinline!min(seq)! & Retorna el mínimo de \texttt{seq}.\\
         \lstinline!range(stop)! & \multirow{2}{=}{Genera una secuencia de valores enteros.} \\
@@ -20,6 +22,23 @@
     
     El nombre de cada tipo de dato es la función para cambiar a dicho tipo de dato, p.e.: \lstinline!x = int(y)! o \lstinline!l = list(s)! (si \texttt{s} es un conjunto o secuencia, como un string).
 \end{contentbox}
+
+
+\begin{contentbox}{label=Módulos Estándar}
+    \small
+    \begin{tabular}{C|p{0.7\linewidth}}
+        \lstinline!math! & Funciones matemáticas. \\
+        \lstinline!sys! & Funciones y parámetros del intérprete. \\
+        \lstinline!op! & Interfaces de sistema operativo. \\
+        \lstinline!op.path! & Manipulaciones de rutas de archivo. \\
+        \lstinline!random! & Generación de números pseudo aleatorios. \\
+        \lstinline!datetime! & Tipos básicos de fecha y hora. \\
+        \lstinline!copy! & Operaciones de copia superficial y profunda. \\
+        \lstinline!time! & Operaciones de tiempo. \\
+        \lstinline!itertools! & Iteradores especiales.
+    \end{tabular}
+\end{contentbox}
+
 
 \begin{contentbox}{label=Funciones Importadas}
     Un módulo es un archivo que contiene definiciones y declaraciones en Python.
@@ -100,21 +119,13 @@ def ejemplo(arg1, arg2=valor):
 \end{lstlisting}
 
     Las docstrings son un tipo de string multilínea, pueden escribirse con triple comilla simple (\lstinline!'''así'''!) o triple comilla doble (\lstinline!"""así"""!).
+
+    La documentación de una función se puede ver con \lstinline!help! en la consola:
+\begin{lstlisting}
+help(ejemplo)
+\end{lstlisting}
     
     \textbf{N.B.}: Los comentarios son para quien leerá o modificará el código, las docstrings son para quien utilizará la función en el suyo propio.
-\end{contentbox}
-
-\begin{contentbox}{label=Módulos Estándar}
-    \small
-    \begin{tabular}{C|p{0.7\linewidth}}
-        \lstinline!math! & Funciones matemáticas. \\
-        \lstinline!sys! & Funciones y parámetros del intérprete. \\
-        \lstinline!op.path! & Manipulaciones de rutas de archivo. \\
-        \lstinline!random! & Generación de números pseudo aleatorios. \\
-        \lstinline!datetime! & Tipos básicos de fecha y hora. \\
-        \lstinline!copy! & Operaciones de copia superficial y profunda. \\
-        \lstinline!time! & Operaciones de tiempo. \\
-    \end{tabular}
 \end{contentbox}
 
 \begin{contentbox}{label=Importación de Módulos Propios}

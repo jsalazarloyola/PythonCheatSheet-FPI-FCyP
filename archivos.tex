@@ -1,3 +1,4 @@
+% !TEX root=main.tex
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ARCHIVOS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -33,7 +34,9 @@ file = open(ruta, modo,
             encoding="utf8")
     \end{lstlisting}
     
-    Las principales codificaciones aquí son \lstinline!utf8! y \lstinline!latin1!.
+    Las principales codificaciones aquí son \lstinline!utf8! (Linux, MacOS) y \lstinline!latin1! (Windows).
+
+    Si no especifica modo, asume lectura y si no especifica codificación, asume la del sistema.
 \end{contentbox}
     
 \begin{contentbox}{label=Operación \lstinline!with!}
@@ -59,11 +62,15 @@ with open(ruta, modo) as file:
     \end{tabular}
     
     Cada lectura y escritura se hacen a partir de donde terminó la anterior. Toda lectura y escritura es \emph{literal}: no se añaden ni quitan caracteres.
-    
-%     Además, el archivo puede ser leído como una secuencia mediante \lstinline!for!, en cuyo caso cada elemento de la secuencia es una línea (string):
-% \begin{lstlisting}
-% for line in file:
-%     print(line.strip("\n"))
-% \end{lstlisting}
-% \vspace{-12pt}
+
+    Un archivo, además, puede leerse utilizando ciclos \lstinline!for!.
+\end{contentbox}
+
+\begin{contentbox}{label=Parámetros de \lstinline!print!}
+    La función \lstinline!print! tiene tres parámetros por palabra clave de interés:
+    \begin{itemize}
+        \item \lstinline!sep=' '! el separador de elementos.
+        \item \lstinline!end='\n'! el caracter final a imprimir.
+        \item \lstinline!file=sys.stdout! el archivo donde imprimir (por defecto es la consola).
+    \end{itemize}
 \end{contentbox}
