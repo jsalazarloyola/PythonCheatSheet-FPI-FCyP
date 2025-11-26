@@ -8,3 +8,16 @@ elif
 Nótese
 iterador
 accederse
+rfind
+lstrip
+rstrip
+isupper
+islower
+isalpha
+isdigit
+isalnum
+endswith
+startswith
+indentada
+sep
+subsecuencia
