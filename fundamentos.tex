@@ -126,7 +126,8 @@ else:
         % 
         \mintinline{python}|s.capitalize()| & Retorna el string convertido con el primer carácter a mayúscula, si es una letra, y el resto a minúscula. \\
         \mintinline{python}|s.title()| & Retorna el string en ``Formato De Título''. \\
-        \mintinline{python}|s.count(sub)| & Retorna la cantidad de apariciones no superpuestas de \texttt{sub}.
+        \mintinline{python}|s.count(sub)| & Retorna la cantidad de apariciones no superpuestas de \texttt{sub}. \\
+        \mintinline{python3}|s1 + s2| & Concatena los strings.
     \end{tabular}
 \end{contentbox}
 
@@ -212,18 +213,23 @@ while keep_going and i <= 5:
     \end{itemize}
 \end{contentbox}
 
+\begin{contentbox}{label=Índices}
+    Los índices de un \textit{string} o lista de largo $n$ parten en 0 y llegan a $n-1$, o parten en -1 (final) y llegan a $-n$ (inicio).
+\end{contentbox}
+
 
 \begin{contentbox}{label=Listas}
     \begin{tabular}{C|p{0.5\linewidth}}
-        \mintinline{python}|lista = [1, 2, 3]| & Define un objeto de tipo lista. \\
-        \mintinline{python}|lista[i]| & Retorna el elemento en la posición \mintinline{python}|i|. Soporta de \mintinline{python}|0| a \mintinline{python}|n-1|\footnote{Con \mintinline{python}|n| equivalente al largo de la lista.} de izquierda a derecha y de \mintinline{python}|-1| a \mintinline{python}|-n| de derecha a izquierda. \\
+        \mintinline{python}|lista = [1, 2]| & Define un objeto de tipo lista. \\
+        \mintinline{python}|lista[i]| & Retorna el elemento en la posición \mintinline{python}|i|. \\
         \mintinline{python}|lista.append(4)| & Añade el elemento \mintinline{python}|4| al final de la lista. \\
         \mintinline{python}|lista[j] = z| & Redefine el valor del elemento en la posición \mintinline{python}|j| de la lista a \mintinline{python}|z|. \\
-        \mintinline{python}|lista.pop(k)| & Retorna el elemento en la posición \mintinline{python}|k| y lo elimina de \mintinline{python}|lista|. Sin parámetros retorna y elimina el último elemento. \\
+        % \mintinline{python}|lista.pop(k)| & Retorna el elemento en la posición \mintinline{python}|k| y lo elimina de \mintinline{python}|lista|. Sin parámetros retorna y elimina el último elemento. \\
+        \mintinline{python}|lista.pop(k)| & Saca de la lista y retorna el \mintinline{python}|k|-ésimo elemento \\
         \mintinline{python}|lista.count(c)| & Retorna la cantidad de apariciones del elemento \mintinline{python}|c|. \\
         \mintinline{python}|lista.index(d)| & Retorna la posición del elemento \mintinline{python}|d|. \\
         \mintinline{python}|lista.remove(e)| & Elimina la primera aparición del elemento \mintinline{python}|e|. \\
-        \mintinline{python}|lista.insert(i, f)| & Inserta el elemento \mintinline{python}|f| en la posición \mintinline{python}|i|\footnote{Los elementos siguientes son desplazados en 1 posición a la derecha.}. \\
+        % \mintinline{python}|lista.insert(i, f)| & Inserta el elemento \mintinline{python}|f| en la posición \mintinline{python}|i|\footnote{Los elementos siguientes son desplazados en 1 posición a la derecha.}. \\
         \mintinline{python}|lista.sort()| & Ordena \mintinline{python}|lista| en orden creciente. \\
         \mintinline{python}|lista1 + lista2| & Retorna una lista que concatena \mintinline{python}|lista1| y \mintinline{python}|lista2|. \\
         \mintinline{python}|lista * n| & Retorna una lista que concatena \mintinline{python}|lista| \mintinline{python}|n| veces\footnote{\mintinline{python}|n| debe ser entero.}. \\
