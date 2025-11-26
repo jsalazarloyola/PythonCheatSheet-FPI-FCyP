@@ -34,3 +34,9 @@ arg
 docstrings
 multilínea
 py
+utf
+latin
+readline
+readlines
+writelines
+stdout

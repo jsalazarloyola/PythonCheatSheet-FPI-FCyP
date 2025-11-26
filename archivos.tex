@@ -4,15 +4,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{contentbox}{label=Archivos}
-    Un archivo es un objeto especial en Python creado con la función nativa \lstinline!open!:
+    Un archivo es un objeto especial en Python creado con la función nativa \mintinline{python3}|open|:
     
     \begin{center}
-        \lstinline!file = open(ruta, modo)!
+        \mintinline{python3}|file = open(ruta, modo)|
     \end{center}
     
-    El parámetro \texttt{ruta} (\lstinline!str!) especifica dónde encontrar el archivo (carpetas y nombre).
+    El parámetro \texttt{ruta} (\mintinline{python3}|str|) especifica dónde encontrar el archivo (carpetas y nombre).
     
-    Cuando dejamos de usar el archivo, debemos cerrarlo, para lo que se utiliza el método \lstinline!close!, como en \lstinline!file.close()!.
+    Cuando dejamos de usar el archivo, debemos cerrarlo, para lo que se utiliza el método \mintinline{python3}|close|, como en \mintinline{python3}|file.close()|.
 \end{contentbox}
     
 \begin{contentbox}{label=Parámetros de archivo}
@@ -28,49 +28,49 @@
         \end{tabular}
     \end{center}
     
-    Si la codificación del archivo no es la del sistema, se puede especificar con \lstinline!encoding!:
-    \begin{lstlisting}
+    Si la codificación del archivo no es la del sistema, se puede especificar con \mintinline{python3}|encoding|:
+    \begin{minted}{python3}
 file = open(ruta, modo,
             encoding="utf8")
-    \end{lstlisting}
+    \end{minted}
     
-    Las principales codificaciones aquí son \lstinline!utf8! (Linux, MacOS) y \lstinline!latin1! (Windows).
+    Las principales codificaciones aquí son \mintinline{python3}|utf8| (Linux, MacOS) y \mintinline{python3}|latin1| (Windows).
 
     Si no especifica modo, asume lectura y si no especifica codificación, asume la del sistema.
 \end{contentbox}
     
-\begin{contentbox}{label=Operación \lstinline!with!}
-    Podemos utilizar un administrador de contexto para trabajar con archivos, a través del bloque \lstinline!with ... as...!, en cuyo caso no es necesario utilizar \lstinline!close!:
-    \begin{lstlisting}
+\begin{contentbox}{label=Operación \mintinline{python3}|with|}
+    Podemos utilizar un administrador de contexto para trabajar con archivos, a través del bloque \mintinline{python3}|with ... as...|, en cuyo caso no es necesario utilizar \mintinline{python3}|close|:
+    \begin{minted}{python3}
 with open(ruta, modo) as file:
     operaciones_sobre(file)
-    \end{lstlisting}
+    \end{minted}
 \end{contentbox}
 
 \begin{contentbox}{label=Operaciones sobre Archivos}
     Los métodos básicos de archivo son:
     
     \begin{tabular}{C|p{0.5\linewidth}}
-        \lstinline!file = open(r, m)! & Abre el archivo en la ubicación \texttt{r} con modo \texttt{m}. \\
-        \lstinline!file.read()! &  \multirow{2}{=}{Lee todo el archivo o hasta \texttt{n} caracteres.} \\
-        \lstinline!file.read(n)! &  \\
-        \lstinline!file.readline()! &  Lee como string hasta el próximo final de línea. \\
-        \lstinline!file.readlines()! &  Lee como lista de strings todo el archivo. \\
-        \lstinline!file.write(s)! & Escribe el string \texttt{s} en el archivo. \\
-        \lstinline!file.writelines(l)! & Escribe la lista de strings \texttt{l} en el archivo. \\
-        \lstinline!file.close()! & Cierra el archivo, impidiendo futuros accesos. \\
+        \mintinline{python3}|file = open(r, m)| & Abre el archivo en la ubicación \texttt{r} con modo \texttt{m}. \\
+        \mintinline{python3}|file.read()| &  \multirow{2}{=}{Lee todo el archivo o hasta \texttt{n} caracteres.} \\
+        \mintinline{python3}|file.read(n)| &  \\
+        \mintinline{python3}|file.readline()| &  Lee como string hasta el próximo final de línea. \\
+        \mintinline{python3}|file.readlines()| &  Lee como lista de strings todo el archivo. \\
+        \mintinline{python3}|file.write(s)| & Escribe el string \texttt{s} en el archivo. \\
+        \mintinline{python3}|file.writelines(l)| & Escribe la lista de strings \texttt{l} en el archivo. \\
+        \mintinline{python3}|file.close()| & Cierra el archivo, impidiendo futuros accesos. \\
     \end{tabular}
     
     Cada lectura y escritura se hacen a partir de donde terminó la anterior. Toda lectura y escritura es \emph{literal}: no se añaden ni quitan caracteres.
 
-    Un archivo, además, puede leerse utilizando ciclos \lstinline!for!.
+    Un archivo, además, puede leerse utilizando ciclos \mintinline{python3}|for|.
 \end{contentbox}
 
-\begin{contentbox}{label=Parámetros de \lstinline!print!}
-    La función \lstinline!print! tiene tres parámetros por palabra clave de interés:
+\begin{contentbox}{label=Parámetros de \mintinline{python3}|print|}
+    La función \mintinline{python3}|print| tiene tres parámetros por palabra clave de interés:
     \begin{itemize}
-        \item \lstinline!sep=' '! el separador de elementos.
-        \item \lstinline!end='\n'! el caracter final a imprimir.
-        \item \lstinline!file=sys.stdout! el archivo donde imprimir (por defecto es la consola).
+        \item \mintinline{python3}|sep=' '| el separador de elementos.
+        \item \mintinline{python3}|end='\n'| el carácter final a imprimir.
+        \item \mintinline{python3}|file=sys.stdout| el archivo donde imprimir (por defecto es la consola).
     \end{itemize}
 \end{contentbox}
