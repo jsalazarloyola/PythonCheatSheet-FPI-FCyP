@@ -9,7 +9,6 @@
 \documentclass[10pt]{article}
 
 \usepackage[spanish]{babel}
-\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
 \usepackage[landscape, letterpaper, vscale=0.95, hscale=0.98]{geometry}
@@ -29,8 +28,9 @@
 % Esto hay que arreglarlo
 \usepackage{formats}
 
-% Falta entregar el formato para esto
-\usepackage{listings}
+% Códigos
+\usepackage{minted}
+
 \usepackage{textcomp}
 
 % Para subrayar al enfatizar
@@ -39,30 +39,6 @@
 % Colores de IDLE sacados de la definición de drivers del paquete listings
 \definecolor{purple2}{RGB}{153,0,153}
 \definecolor{green2}{RGB}{0,153,0}
-\lstdefinestyle{python-idle-code}{%
-    language=[Python3]{Python},
-    basicstyle=\small\ttfamily,
-    % Color settings to match IDLE style
-    keywordstyle=\color{orange},
-    keywordstyle={[2]\color{purple2}},
-    stringstyle=\color{green2},
-    commentstyle=\color{red},
-    upquote=true,
-}
-
-\lstset{
-    style=python-idle-code,
-    tabsize=4,
-    extendedchars=\true,
-	inputencoding=utf8,
-	literate={á}{{\'a}}1
-	 {é}{{\'e}}1
-	 {í}{{\'i}}1 
-	 {ó}{{\'o}}1
-	 {ú}{{\'u}}1
-	 {ñ}{{\~n}}1
-	 {ò}{{\`o}}1,
-}
 
 % Placeholders
 \usepackage{mwe}
@@ -72,7 +48,7 @@
 % Reemplazar aquí con el logo que corresponda
 \titlegraphic{\includegraphics[width=0.2\linewidth]{IMG/logo-fing.png}}
 
-\usepackage[pdftex]{hyperref}
+\usepackage[xetex]{hyperref}
 \hypersetup{
     pdftitle = {Referencia Rápida de Python},
     pdfauthor = {Víctor Araya Sánchez, Javier Salazar Loyola},
@@ -97,8 +73,8 @@
 \begin{multicols*}{3}
 
 \input{fundamentos}
-\input{funciones}
-\input{archivos}
+%\input{funciones}
+%\input{archivos}
 
 \end{multicols*}
 \end{document}
