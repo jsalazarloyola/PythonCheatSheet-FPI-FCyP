@@ -24,22 +24,6 @@
 \end{contentbox}
 
 
-\begin{contentbox}{label=Módulos Estándar}
-    \small
-    \begin{tabular}{C|p{0.65\linewidth}}
-        \mintinline{python3}|math| & Funciones matemáticas. \\
-        \mintinline{python3}|sys| & Funciones y parámetros del intérprete. \\
-        \mintinline{python3}|op| & Interfaces de sistema operativo. \\
-        \mintinline{python3}|op.path| & Manipulaciones de rutas de archivo. \\
-        \mintinline{python3}|random| & Generación de números pseudo aleatorios. \\
-        \mintinline{python3}|datetime| & Tipos básicos de fecha y hora. \\
-        \mintinline{python3}|copy| & Operaciones de copia superficial y profunda. \\
-        \mintinline{python3}|time| & Operaciones de tiempo. \\
-        \mintinline{python3}|itertools| & Iteradores especiales.
-    \end{tabular}
-\end{contentbox}
-
-
 \begin{contentbox}{label=Funciones Importadas}
     Un módulo es un archivo que contiene definiciones y declaraciones en Python.
     
@@ -62,6 +46,23 @@ bla.func1(params)
     \end{center}
     De modo que se pueda utilizar \verb|func1|, \verb|func2| y \verb|func3| como si fuesen nativas.
 \end{contentbox}
+
+
+\begin{contentbox}{label=Módulos Estándar}
+    \small
+    \begin{tabular}{C|p{0.65\linewidth}}
+        \mintinline{python3}|math| & Funciones matemáticas. \\
+        \mintinline{python3}|sys| & Funciones y parámetros del intérprete. \\
+        \mintinline{python3}|op| & Interfaces de sistema operativo. \\
+        \mintinline{python3}|op.path| & Manipulaciones de rutas de archivo. \\
+        \mintinline{python3}|random| & Generación de números pseudo aleatorios. \\
+        \mintinline{python3}|datetime| & Tipos básicos de fecha y hora. \\
+        \mintinline{python3}|copy| & Operaciones de copia superficial y profunda. \\
+        \mintinline{python3}|time| & Operaciones de tiempo. \\
+        \mintinline{python3}|itertools| & Iteradores especiales.
+    \end{tabular}
+\end{contentbox}
+
 
 \begin{contentbox}{label=Definición de Funciones Propias}
     La estructura básica de definición de funciones es:
@@ -89,7 +90,7 @@ r = func_name(x, y, arg3=z)
 \end{contentbox}
 
 \begin{contentbox}{label=Recursión}
-    Python solo requiere el nombre de la función para poder utilizarla, por lo que podemos construir una función en base a sí misma:
+    Python solo requiere el nombre de la función para poder utilizarla, por lo que podemos construir una función con base en sí misma:
 \begin{minted}{python3}
 def func(x):
     if condición(x):
