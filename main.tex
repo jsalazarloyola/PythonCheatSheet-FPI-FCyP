@@ -9,7 +9,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[10pt]{article}
 
+% Configuración del documento
+\directlua{
+    require("filters")
+    doc_version = FULL
+}
+
 \usepackage[spanish]{babel}
+\spanishdeactivate{"}
 
 \usepackage[landscape, letterpaper, vscale=0.95, hscale=0.98]{geometry}
 
@@ -30,6 +37,7 @@
 
 % Códigos
 \usepackage{minted}
+\usepackage{luacode}
 
 \usepackage{textcomp}
 
@@ -72,9 +80,14 @@
 \maketitle
 \begin{multicols*}{3}
 
-\input{fundamentos}
-\input{funciones}
-\input{archivos}
+% \input{fundamentos}
+% \input{funciones}
+% \input{secuencias}
+% \input{archivos}
+
+\directlua{
+    load_files()
+}
 
 \end{multicols*}
 \end{document}

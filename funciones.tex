@@ -23,6 +23,20 @@
     El nombre de cada tipo de dato es la función para cambiar a dicho tipo de dato, p.e.: \mintinline{python3}|x = int(y)| o \mintinline{python3}|l = list(s)| (si \texttt{s} es un conjunto o secuencia, como un string).
 \end{contentbox}
 
+\begin{contentbox}{label=Módulos Estándar}
+    \small
+    \begin{tabular}{C|p{0.65\linewidth}}
+        \mintinline{python3}|math| & Funciones matemáticas. \\
+        % \mintinline{python3}|sys| & Funciones y parámetros del intérprete. \\
+        % \mintinline{python3}|op| & Interfaces de sistema operativo. \\
+        % \mintinline{python3}|op.path| & Manipulaciones de rutas de archivo. \\
+        \mintinline{python3}|random| & Generación de números pseudo aleatorios. \\
+        \mintinline{python3}|datetime| & Tipos básicos de fecha y hora. \\
+        % \mintinline{python3}|copy| & Operaciones de copia superficial y profunda. \\
+        % \mintinline{python3}|time| & Operaciones de tiempo. \\
+        % \mintinline{python3}|itertools| & Iteradores especiales.
+    \end{tabular}
+\end{contentbox}
 
 \begin{contentbox}{label=Funciones Importadas}
     Un módulo es un archivo que contiene definiciones y declaraciones en Python.
@@ -46,23 +60,6 @@ bla.func1(params)
     \end{center}
     De modo que se pueda utilizar \verb|func1|, \verb|func2| y \verb|func3| como si fuesen nativas.
 \end{contentbox}
-
-
-\begin{contentbox}{label=Módulos Estándar}
-    \small
-    \begin{tabular}{C|p{0.65\linewidth}}
-        \mintinline{python3}|math| & Funciones matemáticas. \\
-        % \mintinline{python3}|sys| & Funciones y parámetros del intérprete. \\
-        % \mintinline{python3}|op| & Interfaces de sistema operativo. \\
-        % \mintinline{python3}|op.path| & Manipulaciones de rutas de archivo. \\
-        \mintinline{python3}|random| & Generación de números pseudo aleatorios. \\
-        \mintinline{python3}|datetime| & Tipos básicos de fecha y hora. \\
-        % \mintinline{python3}|copy| & Operaciones de copia superficial y profunda. \\
-        % \mintinline{python3}|time| & Operaciones de tiempo. \\
-        % \mintinline{python3}|itertools| & Iteradores especiales.
-    \end{tabular}
-\end{contentbox}
-
 
 \begin{contentbox}{label=Definición de Funciones Propias}
     La estructura básica de definición de funciones es:
@@ -88,18 +85,6 @@ r = func_name(x, y, z)
 % Esto estaba originalmente dentro del bloque anterior
 % # Dando nombre del parámetro opcional
 % r = func_name(x, y, arg3=z)
-\end{contentbox}
-
-\begin{contentbox}{label=Recursión}
-    Python solo requiere el nombre de la función para poder utilizarla, por lo que podemos construir una función con base en sí misma:
-\begin{minted}{python3}
-def func(x):
-    if condición(x):
-        new_x = operaciones(x)
-        return func(new_x)
-    else:
-        return otras_operaciones(x)
-\end{minted}
 \end{contentbox}
 
 \begin{contentbox}{label=Comentarios y Documentación}
@@ -147,3 +132,16 @@ from utilidades import func
     
     El nombre del módulo no puede contener espacios.
 \end{contentbox}
+
+% Para enviar bloques de minted, ya que espera el \end al inicio de una línea y Lua lo vuelve todo un
+% único string, es mejor usar el entorno `luacode*', que no interpreta nada y manda todo literal a Lua,
+% de modo que la cosa queda tal cual cuando Lua la vomita de vuelta
+\begin{luacode*}
+    filter_version(FULL, [[
+    \begin{contentbox}{label=Recursión}
+        Python solo requiere el nombre de la función para poder utilizarla, por lo que podemos construir una función con base en sí misma:
+
+        \inputminted{python3}{sample_codes/recursion.py}
+    \end{contentbox}
+]])
+\end{luacode*}
