@@ -7,17 +7,17 @@
     Estas funciones, entre otras, están siempre disponibles:
     
     \begin{tabular}{C|p{0.5\linewidth}}
-        \mintinline{python3}|abs(x)| & Valor absoluto de \texttt{x}. \\
-        \mintinline{python3}|help(x)| & Muestra ayuda sobre \texttt{x}. \\
+        % \mintinline{python3}|abs(x)| & Valor absoluto de \texttt{x}. \\
+        % \mintinline{python3}|help(x)| & Muestra ayuda sobre \texttt{x}. \\
         \mintinline{python3}|max(seq)| & Retorna el máximo de \texttt{seq}. \\
         \mintinline{python3}|min(seq)| & Retorna el mínimo de \texttt{seq}.\\
         \mintinline{python3}|range(stop)| & \multirow{2}{=}{Genera una secuencia de valores enteros.} \\
         \mintinline{python3}|range(i, f, s)| & \\
         \mintinline{python3}|round(x)| & \multirow{2}{=}{Redondea \texttt{x} a entero o a \texttt{n} decimales.} \\
         \mintinline{python3}|round(x, n)| & \\
-        \mintinline{python3}|sorted(seq)| & Retorna la secuencia \texttt{seq} ordenada \\
-        \mintinline{python3}|type(o)| & Retorna el tipo de \texttt{o} \\
-        \mintinline{python3}|isinstance(o, c)| & Verifica si \texttt{o} es del tipo \texttt{c} \\
+        % \mintinline{python3}|sorted(seq)| & Retorna la secuencia \texttt{seq} ordenada \\
+        % \mintinline{python3}|type(o)| & Retorna el tipo de \texttt{o} \\
+        % \mintinline{python3}|isinstance(o, c)| & Verifica si \texttt{o} es del tipo \texttt{c} \\
     \end{tabular}
     
     El nombre de cada tipo de dato es la función para cambiar a dicho tipo de dato, p.e.: \mintinline{python3}|x = int(y)| o \mintinline{python3}|l = list(s)| (si \texttt{s} es un conjunto o secuencia, como un string).
@@ -52,14 +52,14 @@ bla.func1(params)
     \small
     \begin{tabular}{C|p{0.65\linewidth}}
         \mintinline{python3}|math| & Funciones matemáticas. \\
-        \mintinline{python3}|sys| & Funciones y parámetros del intérprete. \\
-        \mintinline{python3}|op| & Interfaces de sistema operativo. \\
-        \mintinline{python3}|op.path| & Manipulaciones de rutas de archivo. \\
+        % \mintinline{python3}|sys| & Funciones y parámetros del intérprete. \\
+        % \mintinline{python3}|op| & Interfaces de sistema operativo. \\
+        % \mintinline{python3}|op.path| & Manipulaciones de rutas de archivo. \\
         \mintinline{python3}|random| & Generación de números pseudo aleatorios. \\
         \mintinline{python3}|datetime| & Tipos básicos de fecha y hora. \\
-        \mintinline{python3}|copy| & Operaciones de copia superficial y profunda. \\
-        \mintinline{python3}|time| & Operaciones de tiempo. \\
-        \mintinline{python3}|itertools| & Iteradores especiales.
+        % \mintinline{python3}|copy| & Operaciones de copia superficial y profunda. \\
+        % \mintinline{python3}|time| & Operaciones de tiempo. \\
+        % \mintinline{python3}|itertools| & Iteradores especiales.
     \end{tabular}
 \end{contentbox}
 
@@ -84,9 +84,10 @@ def func_name(arg1, arg2, arg3=valor):
 r = func_name(x, y)
 # Con el parámetro opcional
 r = func_name(x, y, z)
-# Dando nombre del parámetro opcional
-r = func_name(x, y, arg3=z)
 \end{minted}
+% Esto estaba originalmente dentro del bloque anterior
+% # Dando nombre del parámetro opcional
+% r = func_name(x, y, arg3=z)
 \end{contentbox}
 
 \begin{contentbox}{label=Recursión}

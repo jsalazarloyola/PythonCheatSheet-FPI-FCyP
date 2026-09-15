@@ -23,8 +23,9 @@
             \textnormal{Opción} & Modo \\
             \hline
             r & Lectura \\
-            w & Escritura \\
-            a & Añadir
+            w & Escritura
+            % \\
+            % a & Añadir
         \end{tabular}
     \end{center}
     
@@ -53,11 +54,11 @@ with open(ruta, modo) as file:
     \begin{tabular}{C|p{0.5\linewidth}}
         \small\mintinline{python3}|file = open(r, m)| & Abre el archivo en la ubicación \texttt{r} con modo \texttt{m}. \\
         \mintinline{python3}|file.read()| &  \multirow{2}{=}{Lee todo el archivo o hasta \texttt{n} caracteres.} \\
-        \mintinline{python3}|file.read(n)| &  \\
-        \mintinline{python3}|file.readline()| &  Lee como string hasta el próximo final de línea. \\
+        % \mintinline{python3}|file.read(n)| &  \\
+        % \mintinline{python3}|file.readline()| &  Lee como string hasta el próximo final de línea. \\
         \mintinline{python3}|file.readlines()| &  Lee como lista de strings todo el archivo. \\
         \mintinline{python3}|file.write(s)| & Escribe el string \texttt{s} en el archivo. \\
-        \small\mintinline{python3}|file.writelines(l)| & Escribe la lista de strings \texttt{l} en el archivo. \\
+        % \small\mintinline{python3}|file.writelines(l)| & Escribe la lista de strings \texttt{l} en el archivo. \\
         \mintinline{python3}|file.close()| & Cierra el archivo, impidiendo futuros accesos. \\
     \end{tabular}
     
