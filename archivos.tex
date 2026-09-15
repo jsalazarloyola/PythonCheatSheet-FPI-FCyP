@@ -3,20 +3,32 @@
 % ARCHIVOS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% \begin{contentbox}{label=Archivos}
+%     Un archivo es un objeto especial en Python creado con la función nativa \mintinline{python3}|open|:
+    
+%     \begin{center}
+%         \mintinline{python3}|file = open(ruta, modo)|
+%     \end{center}
+    
+%     El parámetro \texttt{ruta} (\mintinline{python3}|str|) especifica dónde encontrar el archivo (carpetas y nombre).
+    
+%     Cuando dejamos de usar el archivo, debemos cerrarlo, para lo que se utiliza el método \mintinline{python3}|close|, como en \mintinline{python3}|file.close()|.
+% \end{contentbox}
+
 \begin{contentbox}{label=Archivos}
-    Un archivo es un objeto especial en Python creado con la función nativa \mintinline{python3}|open|:
-    
-    \begin{center}
-        \mintinline{python3}|file = open(ruta, modo)|
-    \end{center}
-    
-    El parámetro \texttt{ruta} (\mintinline{python3}|str|) especifica dónde encontrar el archivo (carpetas y nombre).
-    
-    Cuando dejamos de usar el archivo, debemos cerrarlo, para lo que se utiliza el método \mintinline{python3}|close|, como en \mintinline{python3}|file.close()|.
+    Un archivo es un objeto especial en Python. Se pueden obtener mediante un administrador de contexto creado con el bloque \mintinline{python3}|with ... as...|:
+
+    \begin{minted}{python3}
+with open(ruta, modo) as file:
+    operaciones_sobre(file)
+    \end{minted}
+
+    Dentro del bloque, se puede acceder y operar el archivo según el modo de apertura.
 \end{contentbox}
-    
+
 \begin{contentbox}{label=Parámetros de archivo}
-    Pueden darse tres modos de apertura:
+    % Pueden darse tres modos de apertura:
+    Los modos de apertura principales son:
     
     \begin{center}
         \begin{tabular}{C|p{0.5\textwidth}}
@@ -31,8 +43,9 @@
     
     Si la codificación del archivo no es la del sistema, se puede especificar con \mintinline{python3}|encoding|:
     \begin{minted}{python3}
-file = open(ruta, modo,
-            encoding="utf8")
+with open(ruta, modo,
+          encoding="utf8") as file:
+    operaciones_sobre(file)
     \end{minted}
     
     Las principales codificaciones aquí son \mintinline{python3}|utf8| (Linux, MacOS) y \mintinline{python3}|latin1| (Windows).
@@ -40,22 +53,23 @@ file = open(ruta, modo,
     Si no especifica modo, asume lectura y si no especifica codificación, asume la del sistema.
 \end{contentbox}
     
-\begin{contentbox}{label=Operación \mintinline{python3}|with|}
-    Podemos utilizar un administrador de contexto para trabajar con archivos, a través del bloque \mintinline{python3}|with ... as...|, en cuyo caso no es necesario utilizar \mintinline{python3}|close|:
-    \begin{minted}{python3}
-with open(ruta, modo) as file:
-    operaciones_sobre(file)
-    \end{minted}
-\end{contentbox}
+% \begin{contentbox}{label=Operación \mintinline{python3}|with|}
+%     Podemos utilizar un administrador de contexto para trabajar con archivos, a través del bloque \mintinline{python3}|with ... as...|, en cuyo caso no es necesario utilizar \mintinline{python3}|close|:
+%     \begin{minted}{python3}
+% with open(ruta, modo) as file:
+%     operaciones_sobre(file)
+%     \end{minted}
+% \end{contentbox}
 
 \begin{contentbox}{label=Operaciones sobre Archivos}
     Los métodos básicos de archivo son:
     
     \begin{tabular}{C|p{0.5\linewidth}}
         \small\mintinline{python3}|file = open(r, m)| & Abre el archivo en la ubicación \texttt{r} con modo \texttt{m}. \\
-        \mintinline{python3}|file.read()| &  \multirow{2}{=}{Lee todo el archivo o hasta \texttt{n} caracteres.} \\
+        % \mintinline{python3}|file.read()| &  \multirow{2}{=}{Lee todo el archivo o hasta \texttt{n} caracteres.} \\
         % \mintinline{python3}|file.read(n)| &  \\
         % \mintinline{python3}|file.readline()| &  Lee como string hasta el próximo final de línea. \\
+        \mintinline{python3}|file.read()| &  Lee todo el archivo o hasta \texttt{n} caracteres. \\
         \mintinline{python3}|file.readlines()| &  Lee como lista de strings todo el archivo. \\
         \mintinline{python3}|file.write(s)| & Escribe el string \texttt{s} en el archivo. \\
         % \small\mintinline{python3}|file.writelines(l)| & Escribe la lista de strings \texttt{l} en el archivo. \\
@@ -64,14 +78,28 @@ with open(ruta, modo) as file:
     
     Cada lectura y escritura se hacen a partir de donde terminó la anterior. Toda lectura y escritura es \emph{literal}: no se añaden ni quitan caracteres.
 
-    Un archivo, además, puede leerse utilizando ciclos \mintinline{python3}|for|.
+    Un archivo, además, puede leerse utilizando ciclos \mintinline{python3}|for|:
+
+    \begin{minted}{python3}
+with open(ruta) as file:
+    for line in file:
+        operaciones_sobre(line)
+    \end{minted}
+
+    Usar una función distinta al modo de apertura genera error (e.g. \mintinline{python3}|file.write(s)| en modo de lectura).
 \end{contentbox}
 
 \begin{contentbox}{label=Parámetros de \mintinline{python3}|print|}
-    La función \mintinline{python3}|print| tiene tres parámetros por palabra clave de interés:
+    La función \mintinline{python3}|print| tiene tres parámetros por palabra clave de interés, con estos valores por defecto:
     \begin{itemize}
         \item \mintinline{python3}|sep=' '| el separador de elementos.
         \item \mintinline{python3}|end='\n'| el carácter final a imprimir.
         \item \mintinline{python3}|file=sys.stdout| el archivo donde imprimir (por defecto es la consola).
     \end{itemize}
+
+    Estos parámetros van siempre al final, pero en cualquier orden:
+
+    \begin{minted}{python3}
+print(a, b, c, sep=';', end='.')
+    \end{minted}
 \end{contentbox}
