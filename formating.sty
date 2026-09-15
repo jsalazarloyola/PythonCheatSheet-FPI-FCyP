@@ -35,7 +35,7 @@
     % Etiqueta de la caja, para poner de título
     label/.store in =\boxlabel,
     label/.value required,
-    % % Ancho de la "caja" (la minipage que se utiliza para encerrarla)
+    % Ancho de la "caja" (la minipage que se utiliza para encerrarla)
     width/.code = {\setlength{\boxwidth}{#1}},
     width/.default = 0.29\textwidth,
     % Hay que pedir la clave, para que se defina
@@ -44,12 +44,14 @@
 
 % Ambiente nuevo para las cajas
 \newenvironment{contentbox}[1]{
+    % Inicio del ambiente
     \pgfkeys{/content box, #1}
     \begin{tikzpicture}
         \node [mybox] (box) \bgroup%
             \begin{minipage}{\boxwidth}
 }
 {
+    % Cierre del ambiente
             \end{minipage}
         \egroup;
         %----- TITLE----
